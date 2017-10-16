@@ -25,7 +25,9 @@ class Users(object):
                     if email not in users.keys():
                         if password == cpassword:
                             if re.search(regEmail, email):
-
+                                if re.search(regPassword, password):
+                                    users[email]={'uname':username, 'email':email, 'password':password}
+                                    return 1
                                 return 2
                             return 3
                         return 4
