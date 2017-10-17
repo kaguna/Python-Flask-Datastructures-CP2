@@ -20,7 +20,7 @@ class Users(object):
         regPassword = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
 
         if re.match(regUsername,username):
-            if username !=' ' and email !=' ' and password !=' ':
+            if username !=' ' and email !=' ' and password !=' ' and cpassword !=' ':
                 if username not in users.keys():
                     if email not in users.keys():
                         if password == cpassword:
