@@ -6,12 +6,12 @@ class Users(object):
     this class will handle all the functions related to the users
     """
 
-    def __init__(self, username=None, email=None, password=None):
+    def __init__(self, username = None, email = None, password = None):
         """constructor to initialize the global variables"""
 
-        self.username=username
-        self.email=email
-        self.password=password
+        self.username = username
+        self.email = email
+        self.password = password
 
     def register_user(self, username, email, password, cpassword):
 
@@ -20,7 +20,7 @@ class Users(object):
         regPassword = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
 
         if re.match(regUsername,username):
-            if username !=' ' and email !=' ' and password !=' ' and cpassword !=' ':
+            if username != '' and email != '' and password != '' and cpassword != '' and cpassword != ' ':
                 if username not in users.keys():
                     if email not in users.keys():
                         if password == cpassword:
