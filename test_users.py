@@ -13,3 +13,8 @@ class TestUsers(TestCase):
         result = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
         self.assertEqual(2,result,"User registration successful")
 
+    def test_user_nullemail(self):
+        """ This will test when the user provides a null email"""
+        nullemailresult = self.new_user.register_user("kaguna", " ", "password", "password")
+        self.assertEqual(7,nullemailresult,"Please fill the Email field ")
+
