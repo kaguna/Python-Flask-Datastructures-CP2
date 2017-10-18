@@ -43,9 +43,10 @@ class Users(object):
                 result = users[email]
                 result_password = result['password']
                 if result_password == password:
-                    return 3
-                return 2
-            return 1
+                    
+                    return "check_match_password"
+                return "check_email_existence_in_dict"
+            return "null_fields"
 
 
 
