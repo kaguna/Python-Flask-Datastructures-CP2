@@ -36,5 +36,17 @@ class Users(object):
             return 7
         return 8
 
+    def user_login(self, email, password):
+        """This will help the user log in and access the resources"""
+        if email !='' and password != '':
+            if email in users.keys():
+                result = users[email]
+                result_password = result['password']
+                if result_password == password:
+                    return 3
+                return 2
+            return 1
+
+
 
 
