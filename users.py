@@ -27,14 +27,14 @@ class Users(object):
                             if re.search(regEmail, email):
                                 if re.search(regPassword, password):
                                     users[email]={'uname':username, 'email':email, 'password':password}
-                                    return 1
-                                return 2
-                            return 3
-                        return 4
-                    return 5
-                return 6
-            return 7
-        return 8
+                                    return "dict_uccess"
+                                return "success_registration"
+                            return "check_email_pattern"
+                        return "match_passwords"
+                    return "email_in_dict"
+                return "username_in_dict"
+            return "null_fields"
+        return "check_username_pattern"
 
     def user_login(self, email, password):
         """This will help the user log in and access the resources"""
