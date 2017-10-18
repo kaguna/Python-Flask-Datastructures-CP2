@@ -42,7 +42,6 @@ simplegeneric==0.8.1
 soccer-cli==0.1.0.0
 SQLAlchemy==1.1.14
 traitlets==4.3.2
-unity-lens-photos==1.0
 urllib3==1.22
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
