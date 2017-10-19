@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/kaguna/Yummy-Recipes.svg?branch=develop)](https://travis-ci.org/kaguna/Yummy-Recipes)
-
+[![Coverage Status](https://coveralls.io/repos/github/kaguna/Yummy-Recipes/badge.svg?branch=master)](https://coveralls.io/github/kaguna/Yummy-Recipes?branch=master)
 # Yummy-Recipes
 
 Andela Bootcamp challenge which provides a platform for users to keep track of their
