@@ -47,11 +47,11 @@ $ (yourenvname) pip install -r requirements.txt
 
 run the following command to install nose unit testing environment:
 
-$ (yourenvname) pip install nose
+$ (yourenvname) pip install nose2
 
 This will enable you to run sngle file tests like.
 
-$ (yourenvname) nosetests -v
+$ (yourenvname) nose2 -v
 
 # Running the program
 
