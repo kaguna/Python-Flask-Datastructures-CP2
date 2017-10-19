@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Yummy Recipes</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><a href="recipes.html"><span>Recipes</span></a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user">{{ session['user'] }}</span></a></li>
+				<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="col-sm-offset-3">
+			<div class="col-sm-9">
+				<div class="panel panel-default">
+				<div class="pane panel-heading">Categories</div>	
+					<div class="panel panel-body">
+						<form>
+							<div class="row">
+								<div class="form-group col-sm-12">
+									<button class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Create Category</button>
+								</div>
+							</div>
+						</form>
+						<hr>
+						<table class="table table-stripped">
+							<thead>
+								<tr>
+									<th>Category Name</th>
+									<th>View</th>
+									<th>Update</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Breakfast</td>
+									<td><i class="glyphicon glyphicon-eye-open"></i></td>
+									<td><i class="glyphicon glyphicon-pencil"></i></td>
+									<td><i class="glyphicon glyphicon-remove"></i></td>
+								</tr>
+								<tr>
+									<td>Lunch</td>
+									<td><i class="glyphicon glyphicon-eye-open"></i></td>
+									<td><i class="glyphicon glyphicon-pencil"></i></td>
+									<td><i class="glyphicon glyphicon-remove"></i></td>
+								</tr>
+								<tr>
+									<td>Supper</td>
+									<td><i class="glyphicon glyphicon-eye-open"></i></td>
+									<td><i class="glyphicon glyphicon-pencil"></i></td>
+									<td><i class="glyphicon glyphicon-remove"></i></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
