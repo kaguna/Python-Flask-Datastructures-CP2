@@ -5,4 +5,4 @@ install:
     "pip install -r requirements.txt"
 script:
     - "nose2 test_users"
-    - "coverage run test_users"
+    - "coverage run test_users.py"
