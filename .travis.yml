@@ -4,4 +4,4 @@ python:
 install:
     "pip install -r requirements.txt"
 script:
-    - "nose2 test_users.py"
+    - "nose2 Yummy_Recipes"
