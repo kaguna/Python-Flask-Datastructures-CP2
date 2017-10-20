@@ -92,6 +92,7 @@ def login():
 
 @app.route("/create_category", methods=["GET", "POST"])
 def create_category():
+    """Handles creation of yummy categories"""
     if request.method == "POST":
         category_name = request.form['cat_name']
         category_owner = request.form['cat_owner']
