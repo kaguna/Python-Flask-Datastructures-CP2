@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, session
+import random
 from users import Users
+from categories import Categories
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+rangenumbers = range(1,100)
+categoryId= random.choice(rangenumbers)
 newUser = Users()
+newCategory = Categories()
 
 
 @app.route("/")
@@ -84,6 +89,38 @@ def login():
             msg_flag = "Invalid credentials, try again"
             return render_template("login.html", message=msg_flag)
     return render_template("login.html")
+
+@app.route("/create_category", methods=["GET", "POST"])
+def create_category():
+    if request.method == "POST":
+        category_name = request.form['cat_name']
+        category_owner = request.form['cat_owner']
+        category_id = categoryId
+        create_category = newCategory.create_category(category_id, category_name, category_owner)
+        if create_category == "success":
+            msg_flag = "Category created successfully"
+            return render_template("dashboard.html",message = msg_flag, alert = "success")
+
+        elif create_category == "catid_uniqueness":
+            msg_flag = "The category name already exists."
+            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+
+        elif create_category == "null_empty_field":
+            msg_flag = "Please input the category name of the field."
+            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+
+        elif create_category == "catname_pattern":
+            msg_flag = "Invalid category name format."
+            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+
+        else:
+            msg_flag = "Error occured, try again later."
+            return render_template("dashboard.html", message=msg_flag , alert = "danger")
+
+
+    return render_template("dashboard.html")
+
+
 
 
 if __name__ == "__main__":
