@@ -12,59 +12,68 @@
 				<a class="navbar-brand" href="#">Yummy Recipes</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="recipes.html"><span>Recipes</span></a></li>
+				<li><a href="recipes.html"><span>Recipes</span></a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-user">{{ session['user'] }}</span></a></li>
 				<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-				</ul>
-			</div>
-		</nav>
+			</ul>
+		</div>
+	</nav>
 
-		<div class="col-sm-offset-3">
-			<div class="col-sm-9">
-				<div class="panel panel-default">
+	<div class="col-sm-offset-3">
+		<div class="col-sm-9">
+			<div class="panel panel-default">
 				<div class="pane panel-heading">Categories</div>	
-					<div class="panel panel-body">
-						<form>
-							<div class="row">
-								<div class="form-group col-sm-12">
-									<button class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Create Category</button>
+				<div class="panel panel-body">
+				<i><h4>{{ session['user'] }} create categories for your recipes. </h4></i>
+				<hr>
+					<form>
+								<div class="row">
+								<div class="form-group col-sm-8">
+										<input type="text" name="cat_name" class="form-control" placeholder="Category Name" required>
+									</div>
+										<div class="form-group col-sm-4">
+											<button class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> Create Category</button>
+										</div>
 								</div>
-							</div>
-						</form>
-						<hr>
-						<table class="table table-stripped">
-							<thead>
-								<tr>
-									<th>Category Name</th>
-									<th>View</th>
-									<th>Update</th>
-									<th>Delete</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Breakfast</td>
-									<td><i class="glyphicon glyphicon-eye-open"></i></td>
-									<td><i class="glyphicon glyphicon-pencil"></i></td>
-									<td><i class="glyphicon glyphicon-remove"></i></td>
-								</tr>
-								<tr>
-									<td>Lunch</td>
-									<td><i class="glyphicon glyphicon-eye-open"></i></td>
-									<td><i class="glyphicon glyphicon-pencil"></i></td>
-									<td><i class="glyphicon glyphicon-remove"></i></td>
-								</tr>
-								<tr>
-									<td>Supper</td>
-									<td><i class="glyphicon glyphicon-eye-open"></i></td>
-									<td><i class="glyphicon glyphicon-pencil"></i></td>
-									<td><i class="glyphicon glyphicon-remove"></i></td>
-								</tr>
-							</tbody>
-						</table>
+					</form>
+					<hr>
+					<i><h4>View all categories under ownership {{ session['user'] }}</h4></i>
+					<hr>
+					<div class="form-group col-sm-12">
+					<table class="table table-stripped">
+						<thead>
+							<tr>
+								<th>Category Name</th>
+								<th>View</th>
+								<th>Update</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Breakfast</td>
+								<td><i class="glyphicon glyphicon-eye-open"></i></td>
+								<td><i class="glyphicon glyphicon-pencil"></i></td>
+								<td><i class="glyphicon glyphicon-remove"></i></td>
+							</tr>
+							<tr>
+								<td>Lunch</td>
+								<td><i class="glyphicon glyphicon-eye-open"></i></td>
+								<td><i class="glyphicon glyphicon-pencil"></i></td>
+								<td><i class="glyphicon glyphicon-remove"></i></td>
+							</tr>
+							<tr>
+								<td>Supper</td>
+								<td><i class="glyphicon glyphicon-eye-open"></i></td>
+								<td><i class="glyphicon glyphicon-pencil"></i></td>
+								<td><i class="glyphicon glyphicon-remove"></i></td>
+							</tr>
+						</tbody>
+					</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
