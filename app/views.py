@@ -71,12 +71,12 @@ def login():
             return render_template("dashboard.html")
 
         elif loginreturnvalue == "check_match_password":
-            msg_flag = "Passwords do not match"
+            msg_flag = "Wrong credentials given."
             return render_template("login.html", message=msg_flag)
 
         elif loginreturnvalue == "check_email_dict":
-            msg_flag = "Credentials does not exist, kindly register."
-            return render_template("register.html", message=msg_flag)
+            msg_flag = "Invalid credentials given."
+            return render_template("login.html", message=msg_flag)
         elif loginreturnvalue == "null_fields":
             msg_flag = "Please fill all fields"
             return render_template("login.html", message=msg_flag)
