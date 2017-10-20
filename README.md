@@ -2,16 +2,15 @@
 [![Coverage Status](https://coveralls.io/repos/github/kaguna/Yummy-Recipes/badge.svg?branch=develop)](https://coveralls.io/github/kaguna/Yummy-Recipes?branch=develop)
 # Yummy-Recipes
 
-Andela Bootcamp challenge which provides a platform for users to keep track of their
-awesome recipes and share with others if they so wish.
-
+Yummy-Recipes is an app that manages users recipes. User can create an account. Using the credentials, the user can login to access the dashboard where registration of the recipe categories take place.
+All operations on the category are displayed. Click on the specific category and create a recipe for the category. All the operations on the recipe are displayed.
 # Contains
 
-The application contains the user interfaces for the Yummy-Recipes,
+The application contains the user interfaces for the Yummy-Recipes which are contained in the designs directory,
 
 UML diagrams for the Project
 
-The falsk application for Yummy-Recipes
+The falsk application for Yummy-Recipes contained in the app directory
 
 # Prerequisites
 
