@@ -63,21 +63,21 @@ def login():
         email = request.form['email']
         password = request.form['password']
         loginreturnvalue = newUser.user_login(email, password)
-        if loginreturnvalue == "login_success":
+        if loginreturnvalue == "success":
             username = newUser.get_username(email)
             email = newUser.get_email(email)
             session['user'] = username
             session['email'] = email
             return render_template("dashboard.html")
 
-        elif loginreturnvalue == "check_match_password":
+        elif loginreturnvalue == "check_email_password_dict":
             msg_flag = "Wrong credentials given."
             return render_template("login.html", message=msg_flag)
 
-        elif loginreturnvalue == "check_email_dict":
+        elif loginreturnvalue == "check_email_password_dict":
             msg_flag = "Invalid credentials given."
             return render_template("login.html", message=msg_flag)
-        elif loginreturnvalue == "null_fields":
+        elif loginreturnvalue == "null_empty_fields":
             msg_flag = "Please fill all fields"
             return render_template("login.html", message=msg_flag)
         else:
