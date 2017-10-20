@@ -55,18 +55,20 @@ class Users(object):
                 result_password = result['password']
                 if result_password == password:
 
-                    return "login_success"
-                return "check_match_password"
-            return "check_email_dict"
+                    return "success"
+                return "true"
+            return "check_email_password_dict"
         return "null_fields"
 
     def get_username(self, email):
+        """ Get username from the email provided by the user"""
         if email in users.keys():
             res_user = users[email]
             return res_user['uname']
         return False
 
     def get_email(self, email):
+        """Get the email from the dictionary"""
         if email in users.keys():
             res_email = users[email]
             return res_email['email']
