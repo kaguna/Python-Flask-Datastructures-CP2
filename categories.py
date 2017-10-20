@@ -1,8 +1,5 @@
 import re
-import random
 categories = {}
-rangenumbers = range(1,100)
-category_id= random.choice(rangenumbers)
 
 class Categories(object):
     """
@@ -32,6 +29,6 @@ class Categories(object):
                                       'cat_owner': category_owner,
                                     }
                         return "success"
-                return "catid_unique"
+                return "catid_uniqueness"
             return "null_empty_field"
         return "catname_pattern"
