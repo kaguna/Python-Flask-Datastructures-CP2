@@ -8,6 +8,5 @@ script:
     - "nose2 test_categories  "
     - "coverage run test_users.py"
     - "coverage run test_categories.py"
-
 after_success: coveralls
 
