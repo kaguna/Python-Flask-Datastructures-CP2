@@ -27,6 +27,15 @@ class TestCategories(TestCase):
         catnamepattern =  self.new_category.create_category("#^" ,"kaguna@gmail.com" )
         self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
 
-   
+    def test_categoryname_exist(self):
+        """Test if category name exists in the dictionary"""
+        self.new_category.categories = {}
+        self.new_category.create_category("lunch", "kaguna@gmail.com")
+        catnameexist = self.new_category.create_category("lunch", "kaguna@gmail.com")
+        self.assertEqual("catname_uniqueness", catnameexist, "Category name exists.")
+
+
+
+
 
 
