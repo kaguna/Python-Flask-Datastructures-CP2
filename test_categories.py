@@ -10,5 +10,5 @@ class TestCategories(TestCase):
         self.new_category = Categories()
 
         """
-        This will test all the registration credentials under all circumstances.
+        This will test category name entry under all circumstances.
         """
