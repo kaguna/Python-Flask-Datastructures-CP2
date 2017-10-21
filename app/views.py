@@ -1,12 +1,9 @@
-from flask import Flask, render_template, request, session
-import random
+from flask import Flask, render_template, request, session, g, url_for, redirect
 from users import Users
 from categories import Categories
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-rangenumbers = range(1,100)
-categoryId= random.choice(rangenumbers)
 newUser = Users()
 newCategory = Categories()
 
@@ -90,38 +87,75 @@ def login():
             return render_template("login.html", message=msg_flag)
     return render_template("login.html")
 
+
 @app.route("/create_category", methods=["GET", "POST"])
 def create_category():
     """Handles creation of yummy categories"""
-    if request.method == "POST":
-        category_name = request.form['cat_name']
-        category_owner = request.form['cat_owner']
-        category_id = categoryId
-        create_category = newCategory.create_category(category_id, category_name, category_owner)
-        if create_category == "success":
-            msg_flag = "Category created successfully"
-            return render_template("dashboard.html",message = msg_flag, alert = "success")
+    if g.user:
+        if request.method == "POST":
+            category_name = request.form['cat_name']
+            category_owner = request.form['cat_owner']
+            create_category = newCategory.create_category(category_name, category_owner)
 
-        elif create_category == "catid_uniqueness":
-            msg_flag = "The category name already exists."
-            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+            data = newCategory.categories
+            my_category = []
+            for category in data:
+                if data[category]['cat_owner'] == category_owner:
+                    my_category.append(category)
+                    if my_category == []:
+                        render_template("dashboard.html")
 
-        elif create_category == "null_empty_field":
-            msg_flag = "Please input the category name of the field."
-            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+            if create_category == "success":
+                """This retrieves all the categories belonging to the user in session"""
 
-        elif create_category == "catname_pattern":
-            msg_flag = "Invalid category name format."
-            return render_template("dashboard.html", message=msg_flag, alert = "danger")
+                msg_flag = "Category created successfully"
+                return render_template("dashboard.html", message = msg_flag, alerttype = "success", data = my_category)
 
-        else:
-            msg_flag = "Error occured, try again later."
-            return render_template("dashboard.html", message=msg_flag , alert = "danger")
+            elif create_category == "catid_uniqueness":
+                msg_flag = "The category name already exists."
+                return render_template("dashboard.html", message = msg_flag, alerttype = "danger", data = my_category)
+
+            elif create_category == "null_empty_field":
+                msg_flag = "Please input the category name of the field."
+                return render_template("dashboard.html", message = msg_flag, alerttype = "danger", data = my_category)
+
+            elif create_category == "catname_pattern":
+                msg_flag = "Invalid category name format."
+                return render_template("dashboard.html", message = msg_flag, alerttype = "danger", data = my_category)
+
+            elif create_category == "catname_uniqueness":
+                msg_flag = "Similar category name found."
+                return render_template("dashboard.html", message = msg_flag, alerttype = "danger", data = my_category)
+
+            else:
+                msg_flag = "Error occured, try again later."
+                return render_template("dashboard.html", message = msg_flag, alerttype = "danger", data = my_category)
+
+        return render_template("dashboard.html")
+    return render_template("login.html")
 
 
-    return render_template("dashboard.html")
+@app.route('/home/')
+def protected():
+    """Handles request to get the homepage"""
+    if g.user:
+        return render_template('home.html')
+
+    return redirect(url_for('logins'))
 
 
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
+
+
+@app.route('/logout')
+def logout():
+   """ method to logout a user"""
+   session.pop('user', None)
+   return render_template("login.html")
 
 
 if __name__ == "__main__":
