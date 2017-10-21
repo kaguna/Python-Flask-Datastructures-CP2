@@ -96,7 +96,7 @@ def create_category():
             category_name = request.form['cat_name']
             category_owner = request.form['cat_owner']
             create_category = newCategory.create_category(category_name, category_owner)
-
+            """This retrieves all the categories belonging to the user in session"""
             data = newCategory.categories
             my_category = []
             for category in data:
@@ -106,7 +106,6 @@ def create_category():
                         render_template("dashboard.html")
 
             if create_category == "success":
-                """This retrieves all the categories belonging to the user in session"""
 
                 msg_flag = "Category created successfully"
                 return render_template("dashboard.html", message = msg_flag, alerttype = "success", data = my_category)
