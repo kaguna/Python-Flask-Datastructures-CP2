@@ -16,3 +16,10 @@ class TestCategories(TestCase):
         """Test if category name is empty"""
         emptyfield = self.new_category.create_category(" ", "kaguna@gmail.com")
         self.assertEqual("null_empty_field", emptyfield, "Please give the category name.")
+
+    def test_null_categoryname(self):
+        """Test if category name is null"""
+        nullfield =  self.new_category.create_category(" " ,"kaguna@gmail.com" )
+        self.assertEqual("null_empty_field", nullfield, "Please give the category name.")
+
+    
