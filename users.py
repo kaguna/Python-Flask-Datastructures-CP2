@@ -22,7 +22,7 @@ class Users(object):
 
         if re.match(regusername, username):
 
-            if username != '' and email != '' and password != '' and cpassword != '' and cpassword != ' ':
+            if username != '' and email != '' and password != '' and cpassword.strip() and cpassword.strip():
 
                 if username not in users.keys():
 
