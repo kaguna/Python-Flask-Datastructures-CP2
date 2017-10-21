@@ -31,9 +31,14 @@ class TestUsers(TestCase):
         self.assertEqual("check_email_pattern", emailpattern1, "Invalid email format.")
 
     def test_email_pattern2(self):
-        """ This will test whether the email a . symbol"""
+        """ This will test whether the email has . symbol"""
         emailpattern2 = self.new_user.register_user("kaguna", "kaguna@gmailcom", "password", "password")
         self.assertEqual("check_email_pattern", emailpattern2, "Invalid email format.")
+
+    def test_email_pattern3(self):
+        """ This will test whether the email has a (@) and (.) symbol"""
+        emailpattern3 = self.new_user.register_user("kaguna", "kagunagmailcom", "password", "password")
+        self.assertEqual("check_email_pattern", emailpattern3, "Invalid email format.")
 
     def test_null_username_field(self):
         """ This will test whether the username field is null"""
