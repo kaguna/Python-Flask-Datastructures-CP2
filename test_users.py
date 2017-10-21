@@ -25,6 +25,16 @@ class TestUsers(TestCase):
         nullemailresult = self.new_user.register_user("kaguna", "", "password", "password")
         self.assertEqual("null_fields", nullemailresult, "Please fill the Email field.")
 
+    def test_email_pattern1(self):
+        """ This will test whether the email has an @ symbol"""
+        emailpattern1 = self.new_user.register_user("kaguna", "kagunagmail.com", "password", "password")
+        self.assertEqual("check_email_pattern", emailpattern1, "Invalid email format.")
+
+    def test_email_pattern2(self):
+        """ This will test whether the email a . symbol"""
+        emailpattern2 = self.new_user.register_user("kaguna", "kaguna@gmailcom", "password", "password")
+        self.assertEqual("check_email_pattern", emailpattern2, "Invalid email format.")
+
     def test_null_username_field(self):
         """ This will test whether the username field is null"""
         nullusernameresult = self.new_user.register_user("", "kaguna@gmail.com", "password", "password")
