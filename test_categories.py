@@ -12,3 +12,7 @@ class TestCategories(TestCase):
         """
         This will test category name entry under all circumstances.
         """
+    def test_empty_categoryname(self):
+        """Test if category name is empty"""
+        emptyfield = self.new_category.create_category(" ", "kaguna@gmail.com")
+        self.assertEqual("null_empty_field", emptyfield, "Please give the category name.")
