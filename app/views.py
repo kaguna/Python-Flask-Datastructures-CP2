@@ -70,7 +70,7 @@ def login():
             email = newUser.get_email(email)
             session['user'] = username
             session['email'] = email
-            return render_template("dashboard.html")
+            return redirect(url_for('create_category'))
 
         elif loginreturnvalue == "check_email_password_dict":
             msg_flag = "Wrong credentials given."
@@ -102,9 +102,6 @@ def create_category():
             for category in data:
                 if data[category]['cat_owner'] == category_owner:
                     my_category.append(category)
-                    if my_category == []:
-                        render_template("dashboard.html")
-
             if create_category == "success":
 
                 msg_flag = "Category created successfully"
@@ -152,9 +149,10 @@ def before_request():
 
 @app.route('/logout')
 def logout():
-   """ method to logout a user"""
-   session.pop('user', None)
-   return render_template("login.html")
+
+    """ method to logout a user"""
+    session.pop('user', None)
+    return render_template("login.html")
 
 
 if __name__ == "__main__":
