@@ -22,4 +22,11 @@ class TestCategories(TestCase):
         nullfield =  self.new_category.create_category(" " ,"kaguna@gmail.com" )
         self.assertEqual("null_empty_field", nullfield, "Please give the category name.")
 
-    
+    def test_pattern_categoryname(self):
+        """Test if category name follows the pattern given"""
+        catnamepattern =  self.new_category.create_category("#^" ,"kaguna@gmail.com" )
+        self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
+
+   
+
+
