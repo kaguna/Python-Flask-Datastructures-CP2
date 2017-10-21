@@ -3,4 +3,4 @@ Pipfile
 Pipfile.lock
 virtualenv
 views.pycd
-users.pyc
+venv
