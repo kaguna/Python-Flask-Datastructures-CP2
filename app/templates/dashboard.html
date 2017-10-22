@@ -51,10 +51,10 @@
 							</tr>
 						</thead>
 						<tbody>
-                        {% if data == None %}
+                        {% if cat_name == None %}
                         no data
                         {% else %}
-							{% for myCategories in data %}
+							{% for myCategories in cat_name %}
                         	<tr>
 								<td>{{ myCategories }}</td>
                                 <td><a href="/recipes/{{ myCategories }}"><i class="glyphicon glyphicon-eye-open"></i></a></td>
