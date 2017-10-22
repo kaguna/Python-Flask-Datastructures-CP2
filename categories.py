@@ -30,3 +30,11 @@ class Categories(object):
                 return "catname_uniqueness"
             return "null_empty_field"
         return "catname_pattern"
+
+    def view_category(self,category_owner):
+        data = self.categories
+        my_category = []
+        for category in data:
+            if data[category]['cat_owner'] == category_owner:
+               my_category.append(category)
+        return   my_category
