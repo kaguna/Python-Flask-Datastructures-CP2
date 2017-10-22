@@ -102,38 +102,74 @@ def create_category():
             list_categories = newCategory.view_category(category_owner)
             if create_category == "success":
                 msg_flag = "Category created successfully"
-                return render_template("dashboard.html", message=msg_flag, alerttype="success", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype="success", cat_name=list_categories)
 
             elif create_category == "catid_uniqueness":
                 msg_flag = "The category name already exists."
-                return render_template("dashboard.html", message=msg_flag, alerttype="danger", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
 
             elif create_category == "null_empty_field":
                 msg_flag = "Please input the category name of the field."
-                return render_template("dashboard.html", message=msg_flag, alerttype="danger", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
 
             elif create_category == "catname_pattern":
                 msg_flag = "Invalid category name format."
-                return render_template("dashboard.html", message=msg_flag, alerttype="danger", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
 
             elif create_category == "catname_uniqueness":
                 msg_flag = "Similar category name found."
-                return render_template("dashboard.html", message=msg_flag, alerttype = "danger", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype = "danger", cat_name=list_categories)
 
             else:
                 msg_flag = "Error occured, try again later."
-                return render_template("dashboard.html", message=msg_flag, alerttype="danger", data=list_categories)
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
         else:
             list_categories = newCategory.view_category(g.user)
-        return render_template("dashboard.html", data=list_categories)
+        return render_template("dashboard.html", cat_name=list_categories)
     return render_template("login.html")
 
 
 @app.route('/recipes/<category>', methods = ["POST","GET"])
 def recipes(category):
-    cat = category
+    list_recipes = newCategory.view_recipes(category)
+    return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
 
-    return render_template("recipes.html", data=cat)
+
+@app.route('/create_recipe', methods = ["POST","GET"])
+def create_recipe():
+    """Handles creation of yummy specific category's recipe"""
+    if g.user:
+        if request.method == "POST":
+            category_name = request.form['cat_name']
+            category_owner = request.form['cat_owner']
+            recipe_name = request.form['recipe_name']
+            create_recipe = newCategory.create_recipe(recipe_name, category_name, category_owner)
+            """This retrieves all the categories belonging to the user in session"""
+            list_recipes = newCategory.view_recipes(category_name)
+            if create_recipe == "success":
+                msg_flag = "Recipe created successfully"
+                return render_template("recipes.html", message=msg_flag, alerttype="success", recipe_name=list_recipes, cat_name=category_name)
+
+            elif create_recipe == "catid_uniqueness":
+                msg_flag = "The category name already exists."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+
+            elif create_recipe == "null_empty_field":
+                msg_flag = "Please input the recipe name of the field."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+
+            elif create_recipe == "recipename_pattern":
+                msg_flag = "Invalid category name format."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+
+            elif create_recipe == "recipename_uniqueness":
+                msg_flag = "Similar category name found."
+                return render_template("recipes.html", message=msg_flag, alerttype = "danger", recipe_name=list_recipes, cat_name=category_name)
+
+            else:
+                msg_flag = "Error occured, try again later."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+    return render_template("login.html")
 
 
 @app.before_request
