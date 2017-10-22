@@ -3,8 +3,8 @@
 <html>
 <head>
 	<title>Dashboard-Recipes</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -13,7 +13,7 @@
 				<a class="navbar-brand" href="#">Yummy Recipes</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="dashboard.html"><span>Categories</span></a></li>
+				<li><a href="/create_category"><span>Categories</span></a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-user">Name</span></a></li>
 				<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
@@ -23,7 +23,7 @@
 		<div class="col-sm-offset-3">
 			<div class="col-sm-9">
 				<div class="panel panel-default">
-				<div class="pane panel-heading">Recipe (category)</div>	
+				<div class="pane panel-heading">Recipe ({{ data }})</div>
 					<div class="panel panel-body">
 						<form>
 							<div class="row">
