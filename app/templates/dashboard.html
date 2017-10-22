@@ -29,7 +29,7 @@
 					<form method="POST" action="/create_category">
 								<div class="row">
 								<div class="form-group col-sm-8">
-                                        <input type="hidden" name="cat_owner" value="{{ session['user'] }}" class="form-control" placeholder="Category owner" hidden>
+                                        <input type="hidden" name="cat_owner" value="{{ session['email'] }}" class="form-control" placeholder="Category owner" hidden>
 										<input type="text" name="cat_name" class="form-control" placeholder="Category Name" required>
 									</div>
 										<div class="form-group col-sm-4">
@@ -51,6 +51,9 @@
 							</tr>
 						</thead>
 						<tbody>
+                        {% if data == None %}
+                        no data
+                        {% else %}
 							{% for myCategories in data %}
                         	<tr>
 								<td>{{ myCategories }}</td>
@@ -59,6 +62,7 @@
 								<td><i class="glyphicon glyphicon-remove"></i></td>
 							</tr>
                             {% endfor %}
+                            {% endif %}
 						</tbody>
 					</table>
 					</div>
