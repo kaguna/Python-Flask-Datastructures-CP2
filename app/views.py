@@ -72,7 +72,7 @@ def login():
             email = newUser.get_email(email)
             session['user'] = username
             session['email'] = email
-            list_categories = newCategory.view_category(username)
+            list_categories = newCategory.view_category(email)
             return render_template("dashboard.html", data=list_categories)
 
         elif loginreturnvalue == "check_email_password_dict":
