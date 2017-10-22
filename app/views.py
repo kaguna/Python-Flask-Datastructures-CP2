@@ -130,6 +130,12 @@ def create_category():
         return render_template("dashboard.html")
     return render_template("login.html")
 
+@app.route('/recipes/<category>',methods = ["POST","GET"])
+def recipes(category):
+    cat = category
+    return render_template("recipes.html", data = cat)
+
+
 
 @app.route('/home/')
 def protected():
@@ -149,7 +155,6 @@ def before_request():
 
 @app.route('/logout')
 def logout():
-
     """ method to logout a user"""
     session.pop('user', None)
     return render_template("login.html")
