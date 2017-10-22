@@ -3,7 +3,7 @@ import re
 
 class Categories(object):
     """
-    this class will handle all the functions related to the users
+    this class will handle all the functions related to the categories and recipes
     """
     categories = {}
     recipes = {}
