@@ -3,6 +3,8 @@ from users import Users
 from categories import Categories
 import os
 app = Flask(__name__)
+from app import app
+
 app.secret_key = os.urandom(24)
 newUser = Users()
 newCategory = Categories()
@@ -104,10 +106,6 @@ def create_category():
                 msg_flag = "Category created successfully"
                 return render_template("dashboard.html", message=msg_flag, alerttype="success", cat_name=list_categories)
 
-            elif create_category == "catid_uniqueness":
-                msg_flag = "The category name already exists."
-                return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
-
             elif create_category == "null_empty_field":
                 msg_flag = "Please input the category name of the field."
                 return render_template("dashboard.html", message=msg_flag, alerttype="danger", cat_name=list_categories)
@@ -129,7 +127,7 @@ def create_category():
     return render_template("login.html")
 
 
-@app.route('/recipes/<category>', methods = ["POST","GET"])
+@app.route('/recipes/<category>', methods=["POST","GET"])
 def recipes(category):
     list_recipes = newCategory.view_recipes(category)
     return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
@@ -137,33 +135,29 @@ def recipes(category):
 
 @app.route('/create_recipe', methods = ["POST","GET"])
 def create_recipe():
-    """Handles creation of yummy specific category's recipe"""
+    """Handles creation of yummy specific category's recipes"""
     if g.user:
         if request.method == "POST":
             category_name = request.form['cat_name']
             category_owner = request.form['cat_owner']
             recipe_name = request.form['recipe_name']
             create_recipe = newCategory.create_recipe(recipe_name, category_name, category_owner)
-            """This retrieves all the categories belonging to the user in session"""
+            """This retrieves all the recipes belonging to the category and the user in session"""
             list_recipes = newCategory.view_recipes(category_name)
             if create_recipe == "success":
                 msg_flag = "Recipe created successfully"
                 return render_template("recipes.html", message=msg_flag, alerttype="success", recipe_name=list_recipes, cat_name=category_name)
-
-            elif create_recipe == "catid_uniqueness":
-                msg_flag = "The category name already exists."
-                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "null_empty_field":
                 msg_flag = "Please input the recipe name of the field."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_pattern":
-                msg_flag = "Invalid category name format."
+                msg_flag = "Invalid recipe name format."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_uniqueness":
-                msg_flag = "Similar category name found."
+                msg_flag = "Similar Recipe name found."
                 return render_template("recipes.html", message=msg_flag, alerttype = "danger", recipe_name=list_recipes, cat_name=category_name)
 
             else:
@@ -185,6 +179,3 @@ def logout():
     session.pop('email', None)
     return render_template("login.html")
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
