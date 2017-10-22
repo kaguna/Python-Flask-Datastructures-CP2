@@ -72,8 +72,8 @@ def login():
             email = newUser.get_email(email)
             session['user'] = username
             session['email'] = email
-            list_categories = newCategory.view_category(email)
-            return render_template("dashboard.html", data=list_categories)
+            list_categories = newCategory.view_category(session['email'])
+            return render_template("dashboard.html", cat_name=list_categories)
 
         elif loginreturnvalue == "check_email_password_dict":
             msg_flag = "Wrong credentials given."
