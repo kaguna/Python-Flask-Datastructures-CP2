@@ -5,8 +5,8 @@ install:
     "pip install -r requirements.txt"
 script:
     - "nose2 test_users"
-    - "nose2 test_categories.py"
-    - "nose2 test_categories  "
+    - "nose2 test_categories"
+    - "nose2 test_recipes "
     - "coverage run test_users.py"
     - "coverage run test_categories.py"
     - "coverage run test_recipes.py"
