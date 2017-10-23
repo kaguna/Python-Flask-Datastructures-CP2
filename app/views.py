@@ -126,13 +126,13 @@ def create_category():
     return render_template("login.html")
 
 
-@app.route('/recipes/<category>', methods=["POST","GET"])
+@app.route('/recipes/<category>', methods=["POST", "GET"])
 def recipes(category):
     list_recipes = newCategory.view_recipes(category)
     return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
 
 
-@app.route('/create_recipe', methods = ["POST","GET"])
+@app.route('/create_recipe', methods=["POST", "GET"])
 def create_recipe():
     """Handles creation of yummy specific category's recipes"""
     if g.user:
@@ -145,23 +145,91 @@ def create_recipe():
             list_recipes = newCategory.view_recipes(category_name)
             if create_recipe == "success":
                 msg_flag = "Recipe created successfully"
-                return render_template("recipes.html", message=msg_flag, alerttype="success", recipe_name=list_recipes, cat_name=category_name)
+                return render_template("recipes.html", message=msg_flag, alerttype="success",
+                                       recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "null_empty_field":
                 msg_flag = "Please input the recipe name of the field."
-                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_pattern":
                 msg_flag = "Invalid recipe name format."
-                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       recipe_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_uniqueness":
                 msg_flag = "Similar Recipe name found."
-                return render_template("recipes.html", message=msg_flag, alerttype = "danger", recipe_name=list_recipes, cat_name=category_name)
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       recipe_name=list_recipes, cat_name=category_name)
 
             else:
                 msg_flag = "Error occured, try again later."
-                return render_template("recipes.html", message=msg_flag, alerttype="danger", recipe_name=list_recipes, cat_name=category_name)
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       recipe_name=list_recipes, cat_name=category_name)
+    return render_template("login.html")
+
+
+@app.route('/edit_category', methods=["POST", "GET"])
+def edit_category():
+    """Handles editing the category name"""
+    if g.user:
+        if request.method == "POST":
+            category_name = request.form['cat_name']
+            current_name = request.form['current_cat_name']
+            category_owner = g.user
+            list_categories = newCategory.view_category(category_owner)
+            edit_cat = newCategory.edit_category(current_name, category_name, category_owner)
+            if edit_cat == "success":
+                dict = newCategory.categories
+                if dict[current_name]["cat_name"] == current_name:
+                    dict[current_name]["cat_name"] = category_name
+                    list = dict.keys()
+                    index = list.index(current_name)
+                    list_categories[index] = category_name
+                msg_flag = "Category name changed."
+                return render_template("dashboard.html", message=msg_flag, alerttype="success",
+                                       cat_name=list_categories)
+            elif edit_cat == "null_empty_field":
+                msg_flag = "Please input the the category name."
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger",
+                                       cat_name=list_categories)
+
+            elif edit_cat == "categoryname_pattern":
+                msg_flag = "Invalid category name format."
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger",
+                                       cat_name=list_categories)
+
+            elif edit_cat == "categoryname_uniqueness":
+                msg_flag = "Similar category name found."
+                return render_template("dashboard.html", message=msg_flag, alerttype="danger",
+                                       cat_name=list_categories)
+
+            else:
+                msg_flag = "error"
+                return render_template("dashboard.html", message=msg_flag, alerttype="error",
+                                       cat_name=list_categories)
+    return render_template("login.html")
+
+
+@app.route('/delete_category/<category_name>', methods=["POST", "GET"])
+def delete_category(category_name):
+    """delete category"""
+    if g.user:
+       delete_cat = newCategory.delete_category(category_name)
+       msg_flag = "Category name deleted."
+       return render_template("dashboard.html", message=msg_flag, alerttype="success",
+                              cat_name=delete_cat)
+    return render_template("login.html")
+
+
+@app.route('/delete_recipe/<recipe_name>', methods = ["POST","GET"])
+def delete_recipe(recipe_name):
+    """delete recipe"""
+    if g.user:
+       delete_recip = newCategory.delete_recipe(recipe_name)
+       msg_flag = "Recipe name deleted."
+       return render_template("recipes.html", message=msg_flag, alerttype="success", recipe_name=delete_recip)
     return render_template("login.html")
 
 
@@ -177,4 +245,3 @@ def logout():
     """ method to logout a user"""
     session.pop('email', None)
     return render_template("login.html")
-
