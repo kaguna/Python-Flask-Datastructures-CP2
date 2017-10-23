@@ -96,6 +96,9 @@ class Categories(object):
     def delete_recipe(self,current_name):
         """This will delete the recipes"""
         list_of_recipes = self.recipes
-        if list_of_recipes[current_name]["recipe_name"] == current_name:
-            del list_of_recipes[current_name]
+        if current_name in list_of_recipes.keys():
+            if list_of_recipes[current_name]["recipe_name"] == current_name:
+                del list_of_recipes[current_name]
+                return list_of_recipes
+            return list_of_recipes
         return list_of_recipes
