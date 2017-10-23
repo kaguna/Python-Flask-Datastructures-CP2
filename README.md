@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/kaguna/Yummy-Recipes.svg?branch=develop)](https://travis-ci.org/kaguna/Yummy-Recipes)
 [![Coverage Status](https://coveralls.io/repos/github/kaguna/Yummy-Recipes/badge.svg?branch=develop)](https://coveralls.io/github/kaguna/Yummy-Recipes?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kaguna/Yummy-Recipes/blob/develop/license.txt)
+
+
 # Yummy-Recipes
 
 Yummy-Recipes is an app that manages users recipes. User can create an account. Using the credentials, the user can login to access the dashboard where registration of the recipe categories take place.
