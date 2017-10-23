@@ -181,12 +181,6 @@ def edit_category():
             list_categories = newCategory.view_category(category_owner)
             edit_cat = newCategory.edit_category(current_name, category_name, category_owner)
             if edit_cat == "success":
-                dict = newCategory.categories
-                if dict[current_name]["cat_name"] == current_name:
-                    dict[current_name]["cat_name"] = category_name
-                    list = dict.keys()
-                    index = list.index(current_name)
-                    list_categories[index] = category_name
                 msg_flag = "Category name changed."
                 return render_template("dashboard.html", message=msg_flag, alerttype="success",
                                        cat_name=list_categories)
