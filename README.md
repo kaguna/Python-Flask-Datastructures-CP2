@@ -58,3 +58,7 @@ Run the program by typing the command in your terminal :
 
 $  (yourenvname) python run.py
 you can now use the application.
+
+The Yummy-Recipes is live at heroku. click the link below.
+
+https://recipes-yummy.herokuapp.com
