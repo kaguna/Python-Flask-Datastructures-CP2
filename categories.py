@@ -68,11 +68,8 @@ class Categories(object):
     def edit_category(self,current_name,category_name, category_owner):
 
      regexcategory_name = "[a-zA-Z0-9- .]"
-
      if re.match(regexcategory_name, category_name):
-
          if category_name != '' and category_name.strip():
-
              if category_name not in self.categories.keys():
 
 
@@ -89,8 +86,11 @@ class Categories(object):
     def delete_category(self,current_name):
         """This will delete the categories"""
         list_of_categories = self.categories
-        if list_of_categories[current_name]["cat_name"] == current_name:
-            del list_of_categories[current_name]
+        if current_name in list_of_categories.keys():
+            if list_of_categories[current_name]["cat_name"] == current_name:
+                del list_of_categories[current_name]
+                return list_of_categories
+            return list_of_categories
         return list_of_categories
 
     def delete_recipe(self,current_name):
