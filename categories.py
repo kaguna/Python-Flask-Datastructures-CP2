@@ -67,3 +67,36 @@ class Categories(object):
             if data[recipe]['cat_name'] == category_name:
                my_recipes.append(recipe)
         return my_recipes
+
+    def edit_category(self,current_name,category_name, category_owner):
+
+     regexcategory_name = "[a-zA-Z0-9- .]"
+
+     if re.match(regexcategory_name, category_name):
+
+         if category_name != '' and category_name.strip():
+
+             if category_name not in self.categories.keys():
+
+
+
+
+
+
+                return "success"
+             return "categoryname_uniqueness"
+         return "null_empty_field"
+     return "categoryname_pattern"
+
+
+    def delete_category(self,current_name):
+         list_of_categories = self.categories
+         if list_of_categories[current_name]["cat_name"] == current_name:
+             del list_of_categories[current_name]
+         return list_of_categories
+
+    def delete_recipe(self,current_name):
+         list_of_recipes = self.recipes
+         if list_of_recipes[current_name]["recipe_name"] == current_name:
+             del list_of_recipes[current_name]
+         return list_of_recipes
