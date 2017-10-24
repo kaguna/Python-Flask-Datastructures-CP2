@@ -1,5 +1,5 @@
 from unittest import TestCase
-from categories import Categories
+from classes.categories import Categories
 
 
 class TestRecipes(TestCase):
