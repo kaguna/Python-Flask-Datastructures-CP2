@@ -8,5 +8,4 @@ script:
     - nosetests --with-coverage
     - coveralls
 after_success:
-    - "coveralls"
-    
+    - "coveralls" 
