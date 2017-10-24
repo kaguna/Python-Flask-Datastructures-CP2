@@ -10,3 +10,7 @@ app.pyc
 __init__.pyc
 views.pyc
 config.pyc
+.codeclimate.yml
+__pycache__/
+app/__pycache__/
+
