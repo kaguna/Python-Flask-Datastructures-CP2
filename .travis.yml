@@ -4,11 +4,11 @@ python:
 install:
     "pip install -r requirements.txt"
 script:
-    - "nose2 tests/test_users"
-    - "nose2 tests/test_categories"
-    - "nose2 tests/test_recipes "
-    - "coverage run tests/test_users.py"
-    - "coverage run tests/test_categories.py"
-    - "coverage run tests/test_recipes.py"
+    - "nose2 test_users"
+    - "nose2 test_categories"
+    - "nose2 test_recipes "
+    - "coverage run test_users.py"
+    - "coverage run test_categories.py"
+    - "coverage run test_recipes.py"
 after_success: coveralls
 
