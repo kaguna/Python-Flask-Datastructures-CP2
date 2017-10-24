@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, g
-from users import Users
-from categories import Categories
+from  classes.users import Users
+from  classes.categories import Categories
 import os
 app = Flask(__name__)
 from app import app
