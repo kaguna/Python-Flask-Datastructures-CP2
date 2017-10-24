@@ -49,18 +49,21 @@ $ (yourenvname) pip install -r requirements.txt
 
 run the following command to install nose unit testing environment:
 
-$ (yourenvname) pip install nose2
+$ (yourenvname) pip install nosetests
 
-This will enable you to run sngle file tests like.
+This will enable you to run tests to all the files in the Yummy-Recipes directory.
 
-$ (yourenvname) nose2 -v
+$ cd --working directory--
+
+$ (yourenvname) nosetests
 
 # Running the program
 
 Run the program by typing the command in your terminal :
 
-$  (yourenvname) python run.py
-you can now use the application.
+$  (yourenvname) python app.py 
+
+You can now use the application.
 
 The Yummy-Recipes is live at heroku. click the link below.
 
