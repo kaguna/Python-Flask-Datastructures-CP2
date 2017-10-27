@@ -210,7 +210,7 @@ def edit_category():
 def delete_category(category_name):
     """delete category"""
     if g.user:
-       delete_cat = newCategory.delete_category(category_name)
+       delete_cat = newCategory.delete_category(category_name,g.user)
        msg_flag = "Category name deleted."
        return render_template("dashboard.html", message=msg_flag, alerttype="success",
                               cat_name=delete_cat)
