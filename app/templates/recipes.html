@@ -53,12 +53,12 @@
 							{% else %}
 							{% for myRecipes in recipe_name %}
 							<tr>
-								<td>{{ myRecipes }}</td>
+								<td>{{ myRecipes[0] }}</td>
 								<td><a href="#edit_recipe{{ myRecipes }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
-								<td><a href="/delete_recipe/{{ myRecipes }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+								<td><a href="/delete_recipe/{{ myRecipes[0] }}"><i class="glyphicon glyphicon-remove"></i></a></td>
 							</tr>
                             <!-- Modal -->
-								<div class="modal fade" id="edit_recipe{{ myRecipes }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+								<div class="modal fade" id="edit_recipe{{ myRecipes[0] }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
 									<div class="modal-dialog">
 										<!-- Content of modal-->
 										<div class="modal-content">
@@ -75,8 +75,8 @@
 										<div class="modal-body">
 											<form>
 												<div class="form-group">
-                                                    <input type="hidden" name="current_rec_name" class="form-control" value="{{ myRecipes }}" hidden>
-													<input type="text" name="cat_name" class="form-control" placeholder="Recipe name ({{ myRecipes }})">
+                                                    <input type="hidden" name="current_rec_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
+													<input type="text" name="cat_name" class="form-control" placeholder="Recipe name ({{ myRecipes[0] }})">
 												</div>
 												<!-- Modal Footer -->
 												<div class="modal-footer">
