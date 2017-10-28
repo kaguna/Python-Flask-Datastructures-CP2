@@ -49,7 +49,6 @@ class Categories(object):
 
         similar_cat_list = [searched_cat_name for searched_cat_name in personal_categories
                             if searched_cat_name[0] == new_name]
-
         regexcategory_name = "[a-zA-Z0-9- .]"
         if re.match(regexcategory_name, new_name):
             if new_name != '' and new_name.strip():
@@ -58,6 +57,14 @@ class Categories(object):
                         if similar_cat_list == []:
                             category_name_index = personal_categories.index(catList)
                             personal_categories[category_name_index][0] = new_name
+                            """Update the category name in the recipes list"""
+                            for recList in self.recipes:
+                                if current_name in recList:
+                                    for index in range(0, len(self.recipes)):
+                                        """loop all the indexes with the current"""
+                                        self.recipes[index][1] = new_name
+                                    return "success"
+
                             return "success"
                         return "categoryname_uniqueness"
             return "null_empty_field"
