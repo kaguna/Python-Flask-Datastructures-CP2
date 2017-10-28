@@ -16,7 +16,8 @@ class Categories(object):
 
     def create_category(self, category_name, category_owner):
         """This will create new and unique category"""
-        personal_categories = [owner_list for owner_list in self.categories if category_owner in owner_list]
+        personal_categories = [owner_list for owner_list in self.categories
+                               if category_owner in owner_list]
         regexcategory_name = "[a-zA-Z0-9- .]"
 
         if re.match(regexcategory_name, category_name):
@@ -70,7 +71,7 @@ class Categories(object):
         if re.match(regexcategory_name, category_name):
             if category_name != '' and category_name.strip():
 
-                    
+
                 return "categoryname_uniqueness"
             return "null_empty_field"
         return "categoryname_pattern"
