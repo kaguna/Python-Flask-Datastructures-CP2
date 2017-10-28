@@ -1,7 +1,6 @@
 chardet==2.3.0
 checkbox-support==0.22
 click==6.7
-command-not-found==0.3
 coverage==4.4.1
 coveralls==1.2.0
 cryptography==1.7.1
