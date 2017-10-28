@@ -128,8 +128,10 @@ def create_category():
 
 @app.route('/recipes/<category>', methods=["POST", "GET"])
 def recipes(category):
-    list_recipes = newCategory.view_recipes(category)
-    return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
+    if g.user:
+        list_recipes = newCategory.view_recipes(category, g.user)
+        return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
+    return render_template("login.html")
 
 
 @app.route('/create_recipe', methods=["POST", "GET"])
@@ -142,7 +144,7 @@ def create_recipe():
             recipe_name = request.form['recipe_name']
             create_recipe = newCategory.create_recipe(recipe_name, category_name, category_owner)
             """This retrieves all the recipes belonging to the category and the user in session"""
-            list_recipes = newCategory.view_recipes(category_name)
+            list_recipes = newCategory.view_recipes(category_name, g.user)
             if create_recipe == "success":
                 msg_flag = "Recipe created successfully"
                 return render_template("recipes.html", message=msg_flag, alerttype="success",
