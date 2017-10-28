@@ -18,14 +18,16 @@ class Categories(object):
         """This will create new and unique category"""
         personal_categories = [owner_list for owner_list in self.categories
                                if category_owner in owner_list]
+
+        similar_cat_list = [searched_cat_name for searched_cat_name in personal_categories
+                            if searched_cat_name[0] == category_name]
+        
         regexcategory_name = "[a-zA-Z0-9- .]"
 
         if re.match(regexcategory_name, category_name):
 
             if category_name != '' and category_name.strip():
                 if self.categories != []:
-                    similar_cat_list = [searched_cat_name for searched_cat_name in personal_categories
-                                        if searched_cat_name[0] == category_name]
                     if similar_cat_list == []:
                         self.categories.append([category_name, category_owner, ])
                         return "success"
@@ -65,14 +67,24 @@ class Categories(object):
         return my_recipes
 
 
-    def edit_category(self,current_name,category_name, category_owner):
+    def edit_category(self, current_name, new_name, category_owner):
         """Update the category name"""
+        personal_categories = [owner_list for owner_list in self.categories
+                               if category_owner in owner_list]
+
+        similar_cat_list = [searched_cat_name for searched_cat_name in personal_categories
+                            if searched_cat_name[0] == new_name]
+
         regexcategory_name = "[a-zA-Z0-9- .]"
-        if re.match(regexcategory_name, category_name):
-            if category_name != '' and category_name.strip():
-
-
-                return "categoryname_uniqueness"
+        if re.match(regexcategory_name, new_name):
+            if new_name != '' and new_name.strip():
+                for catList in personal_categories:
+                    if current_name in catList:
+                        if similar_cat_list == []:
+                            category_name_index = personal_categories.index(catList)
+                            personal_categories[category_name_index][0] = new_name
+                            return "success"
+                        return "categoryname_uniqueness"
             return "null_empty_field"
         return "categoryname_pattern"
 
