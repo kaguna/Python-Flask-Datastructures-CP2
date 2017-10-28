@@ -48,14 +48,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% if recipe_name == None %}
+							{% if rec_name == None %}
 							no data
 							{% else %}
-							{% for myRecipes in recipe_name %}
+							{% for myRecipes in rec_name %}
 							<tr>
 								<td>{{ myRecipes[0] }}</td>
-								<td><a href="#edit_recipe{{ myRecipes }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
-								<td><a href="/delete_recipe/{{ myRecipes[0] }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+								<td><a href="#edit_recipe{{ myRecipes[0] }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
+								<td>
+
+
+
+                                <form action="/delete_recipe" method="POST">
+													<input type="hidden" name="category_name" class="form-control" value="{{ cat_name }}" hidden>
+                                                    <input type="hidden" name="recipe_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
+                                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                                </form>
+
+
+
+                                </td>
 							</tr>
                             <!-- Modal -->
 								<div class="modal fade" id="edit_recipe{{ myRecipes[0] }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
@@ -69,14 +81,15 @@
 												<span aria-hidden="true">&times;</span>
 												<span class="sr-only">Close</span>
 											</button>
-											<h4 class="modal-title" id="modal_label">Edit Recipe ({{ myRecipes }})</h4>
+											<h4 class="modal-title" id="modal_label">Edit Recipe ({{ myRecipes[0] }})</h4>
 										</div>
 										<!-- Modal Body -->
 										<div class="modal-body">
-											<form>
+											<form action="/edit_recipe" method="POST">
 												<div class="form-group">
+													<input type="hidden" name="category_name" class="form-control" value="{{ cat_name }}" hidden>
                                                     <input type="hidden" name="current_rec_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
-													<input type="text" name="cat_name" class="form-control" placeholder="Recipe name ({{ myRecipes[0] }})">
+													<input type="text" name="new_rec_name" class="form-control" placeholder="Recipe name ({{ myRecipes[0] }})">
 												</div>
 												<!-- Modal Footer -->
 												<div class="modal-footer">
