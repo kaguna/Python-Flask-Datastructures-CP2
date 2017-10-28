@@ -130,7 +130,7 @@ def create_category():
 def recipes(category):
     if g.user:
         list_recipes = newCategory.view_recipes(category, g.user)
-        return render_template("recipes.html", cat_name=category, recipe_name=list_recipes)
+        return render_template("recipes.html", cat_name=category, rec_name=list_recipes)
     return render_template("login.html")
 
 
@@ -148,27 +148,27 @@ def create_recipe():
             if create_recipe == "success":
                 msg_flag = "Recipe created successfully"
                 return render_template("recipes.html", message=msg_flag, alerttype="success",
-                                       recipe_name=list_recipes, cat_name=category_name)
+                                       rec_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "null_empty_field":
                 msg_flag = "Please input the recipe name of the field."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
-                                       recipe_name=list_recipes, cat_name=category_name)
+                                       rec_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_pattern":
                 msg_flag = "Invalid recipe name format."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
-                                       recipe_name=list_recipes, cat_name=category_name)
+                                       rec_name=list_recipes, cat_name=category_name)
 
             elif create_recipe == "recipename_uniqueness":
                 msg_flag = "Similar Recipe name found."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
-                                       recipe_name=list_recipes, cat_name=category_name)
+                                       rec_name=list_recipes, cat_name=category_name)
 
             else:
                 msg_flag = "Error occured, try again later."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
-                                       recipe_name=list_recipes, cat_name=category_name)
+                                       rec_name=list_recipes, cat_name=category_name)
     return render_template("login.html")
 
 
@@ -218,14 +218,56 @@ def delete_category(category_name):
                               cat_name=delete_cat)
     return render_template("login.html")
 
+@app.route('/edit_recipe', methods=["POST", "GET"])
+def edit_recipe():
+    """Handles editing the recipe name"""
+    if g.user:
+        if request.method == "POST":
+            category_name = request.form['category_name']
+            new_recipe_name = request.form['new_rec_name']
+            current_recipe_name = request.form['current_rec_name']
+            list_recipes = newCategory.view_recipes(category_name, g.user)
+            edit_rec = newCategory.edit_recipe(current_recipe_name, new_recipe_name, category_name, g.user)
+            if edit_rec == "success":
+                msg_flag = "Recipe name changed."
+                return render_template("recipes.html", message=msg_flag, alerttype="success",
+                                       rec_name=list_recipes, cat_name=category_name)
+            elif edit_rec == "null_empty_field":
+                msg_flag = "Please input the the category name."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       rec_name=list_recipes, cat_name=category_name)
 
-@app.route('/delete_recipe/<recipe_name>', methods = ["POST","GET"])
-def delete_recipe(recipe_name):
+            elif edit_rec == "recipename_pattern":
+                msg_flag = "Invalid recipe name format."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       rec_name=list_recipes, cat_name=category_name)
+
+            elif edit_rec == "recipename_uniqueness":
+                msg_flag = "Similar recipe name found."
+                return render_template("recipes.html", message=msg_flag, alerttype="danger",
+                                       rec_name=list_recipes, cat_name=category_name)
+
+            else:
+                msg_flag = "error"
+                return render_template("recipes.html", message=msg_flag, alerttype="error",
+                                       rec_name=list_recipes, cat_name=category_name)
+    return render_template("login.html")
+
+
+@app.route('/delete_recipe', methods = ["POST","GET"])
+def delete_recipe():
     """delete recipe"""
     if g.user:
-       delete_recip = newCategory.delete_recipe(recipe_name)
-       msg_flag = "Recipe name deleted."
-       return render_template("recipes.html", message=msg_flag, alerttype="success", recipe_name=delete_recip)
+       if request.method == "POST":
+          category_name = request.form['category_name']
+          recipe_name = request.form['recipe_name']
+          delete_recip = newCategory.delete_recipe(recipe_name, category_name, g.user)
+          msg_flag = "Recipe name deleted."
+          list_recipes = newCategory.view_recipes(category_name, g.user)
+          return render_template("recipes.html", message=msg_flag, alerttype="success",
+                              rec_name=list_recipes, cat_name=category_name)
+       return render_template("recipes.html")
+
     return render_template("login.html")
 
 
