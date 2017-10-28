@@ -21,7 +21,7 @@ class Categories(object):
 
         similar_cat_list = [searched_cat_name for searched_cat_name in personal_categories
                             if searched_cat_name[0] == category_name]
-        
+
         regexcategory_name = "[a-zA-Z0-9- .]"
 
         if re.match(regexcategory_name, category_name):
@@ -39,32 +39,37 @@ class Categories(object):
 
     def view_category(self, category_owner):
         """This will display the categories"""
-        cats = self.categories
-        personal_list = [owner_list for owner_list in cats if category_owner in owner_list]
+        personal_list = [owner_list for owner_list in self.categories if category_owner in owner_list]
         return personal_list
 
     def create_recipe(self, recipe_name, category_name, category_owner):
-        """This will add a recipe to dictionary"""
+        """This will add a recipe to the list"""
+        specific_category_recipes = [recipes for recipes in self.recipes
+                               if category_name in recipes]
+
+        similar_recipe_list = [searched_recipe_name for searched_recipe_name in specific_category_recipes
+                            if searched_recipe_name[0] == recipe_name]
+
         regexrecipe_name = "[a-zA-Z0-9- .]"
+
         if re.match(regexrecipe_name, recipe_name):
+
             if recipe_name != '' and recipe_name.strip():
-                if recipe_name not in self.recipes.keys():
-                    self.recipes[recipe_name] = {'recipe_name': recipe_name,
-                                                 'cat_name': category_name,
-                                                 'cat_owner': category_owner,
-                                                 }
-                    return "success"
-                return "recipename_uniqueness"
+                if self.recipes != []:
+                    if similar_recipe_list == []:
+                        self.recipes.append([recipe_name, category_name, category_owner,])
+                        return "success"
+                    return "recipename_uniqueness"
+                self.recipes.append([recipe_name,category_name, category_owner])
+                return "success"
             return "null_empty_field"
         return "recipename_pattern"
 
-    def view_recipes(self, category_name):
-        data = self.recipes
-        my_recipes = []
-        for recipe in data:
-            if data[recipe]['cat_name'] == category_name:
-               my_recipes.append(recipe)
-        return my_recipes
+    def view_recipes(self, category_name, recipe_owner):
+        """Displays the specific category's recipes"""
+        specific_category_recipes = [recipes for recipes in self.recipes
+                                     if recipe_owner == recipes[2] and category_name == recipes[1]]
+        return specific_category_recipes
 
 
     def edit_category(self, current_name, new_name, category_owner):
