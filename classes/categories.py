@@ -74,11 +74,21 @@ class Categories(object):
         """This will delete the categories from user in session"""
         personal_categories = [owner_list for owner_list in self.categories
                                if category_owner in owner_list]
-        for catList in personal_categories:
-            if category_name in catList:
-               category_list_index = personal_categories.index(catList)
-               del self.categories[category_list_index]
-               del personal_categories[category_list_index]
+
+        specific_category_recipes = [recipes for recipes in self.recipes
+                                     if category_owner == recipes[2] and category_name == recipes[1]]
+        """delete recipes for the deleted category"""
+        for recList in self.recipes:
+            if category_name in recList:
+                for index in range(0, len(specific_category_recipes)):
+                    """loop all the indexes with the recipes of the specific category"""
+                    del specific_category_recipes
+
+            for catList in personal_categories:
+                if category_name in catList:
+                    category_list_index = personal_categories.index(catList)
+                    del self.categories[category_list_index]
+                    del personal_categories[category_list_index]
         return personal_categories
 
     def create_recipe(self, recipe_name, category_name, category_owner):
