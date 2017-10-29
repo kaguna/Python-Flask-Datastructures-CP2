@@ -29,14 +29,14 @@ class TestRecipes(TestCase):
 
     def test_recipename_exist(self):
         """Test if recipe name exists in the dictionary"""
-        self.new_category.recipes = {}
+        self.new_category.recipes = []
         self.new_category.create_recipe("sembe","lunch", "kaguna@gmail.com")
         recipenameexist = self.new_category.create_recipe("sembe","lunch", "kaguna@gmail.com")
         self.assertEqual("recipename_uniqueness", recipenameexist, "Recipe name exists.")
 
     def test_recipename_create(self):
         """Test if recipe name is different and register"""
-        self.new_category.recipes = {}
+        self.new_category.recipes = []
         self.new_category.create_recipe("Githeri","lunch", "kaguna@gmail.com")
         create_recname = self.new_category.create_recipe("ugali","supper", "kaguna@gmail.com")
         self.assertEqual("success", create_recname, "Recipe created successfully.")
