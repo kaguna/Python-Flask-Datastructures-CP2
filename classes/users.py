@@ -15,30 +15,21 @@ class Users(object):
         self.password = password
 
     def register_user(self, username, email, password, cpassword):
-
         regusername = "[a-zA-Z0-9- .]"
         regemail = r"([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-
         if re.match(regusername, username):
-
-            if username != '' and email != '' and password != '' and cpassword.strip() and cpassword.strip():
-
+            if username != '' and email != '' and password != '' and cpassword.strip():
                 if username not in users.keys():
-
                     if email not in users.keys():
-
                         if password == cpassword:
-
                             if re.search(regemail, email):
-
-                                if len(password) >= 8:
-
+                                if len(password) >= 6:
                                     users[email] = {'uname': username,
                                                     'email': email,
                                                     'password': password,
                                                     }
                                     return "dict_success"
-                                return "check_password_pattern"
+                                return "check_password_length"
                             return "check_email_pattern"
                         return "match_passwords"
                     return "email_in_dict"
