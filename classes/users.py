@@ -18,7 +18,6 @@ class Users(object):
 
         regusername = "[a-zA-Z0-9- .]"
         regemail = r"([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-        regpassword = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
 
         if re.match(regusername, username):
 
@@ -32,7 +31,7 @@ class Users(object):
 
                             if re.search(regemail, email):
 
-                                if re.search(regpassword, password):
+                                if len(password) >= 8:
 
                                     users[email] = {'uname': username,
                                                     'email': email,
