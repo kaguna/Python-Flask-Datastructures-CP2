@@ -15,10 +15,8 @@ class TestUsers(TestCase):
 
     def test_register_user(self):
         """Test registration when all inputs are stored in the dictionary."""
-        self.new_user.users = {}
-        self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
         result = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
-        self.assertEqual("check_password_pattern", result, "User registration successful")
+        self.assertEqual("dict_success", result, "User registration successful")
 
     def test_null_email_field(self):
         """ This will test whether the email field is null"""
@@ -62,7 +60,7 @@ class TestUsers(TestCase):
 
     def test_passwordEqualCpassword_field(self):
         """ This will test whether the password match the confirm password"""
-        comparepasswordresult = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "pass")
+        comparepasswordresult = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password1")
         self.assertEqual("match_passwords", comparepasswordresult, "The passwords given do not match.")
 
         """
@@ -73,14 +71,14 @@ class TestUsers(TestCase):
         self.new_user.users = {}
         self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
         validlogin= self.new_user.user_login("kaguna@gmail.com", "password")
-        self.assertEqual("check_email_password_dict", validlogin, "Login successful.")
+        self.assertEqual("success", validlogin, "Login successful.")
 
     def test_login_match_password(self):
         """ Test login when the password differs with the one in the dictionary.."""
         self.new_user.users = {}
         self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
         invalidmatchpassword = self.new_user.user_login("kaguna@gmail.com", "pass")
-        self.assertEqual("check_email_password_dict", invalidmatchpassword, "Incorrect password given.")
+        self.assertEqual("true", invalidmatchpassword, "Incorrect password given.")
 
     def test_login_match_email(self):
         """ Test login when the email differs with the one in the dictionary."""
