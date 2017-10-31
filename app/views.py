@@ -40,7 +40,7 @@ def register():
             return render_template("register.html", message=msg_flag)
 
         elif regreturnvalue == "check_password_pattern":
-            msg_flag = "Password must have a minimum of 8 characters .i.e mixture of numbers and characters."
+            msg_flag = "Password must have a minimum of 8 characters."
             return render_template("register.html", message=msg_flag)
 
         elif regreturnvalue == "username_in_dict":
