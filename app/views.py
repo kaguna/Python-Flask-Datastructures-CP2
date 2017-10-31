@@ -39,7 +39,7 @@ def register():
             msg_flag = "Invalid username format."
             return render_template("register.html", message=msg_flag)
 
-        elif regreturnvalue == "check_password_pattern":
+        elif regreturnvalue == "check_password_length":
             msg_flag = "Password must have a minimum of 8 characters."
             return render_template("register.html", message=msg_flag)
 
