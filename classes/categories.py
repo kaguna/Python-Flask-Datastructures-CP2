@@ -24,6 +24,7 @@ class Categories(object):
 
         regexcategory_name = "[a-zA-Z0-9- .]"
 
+        category_name = category_name.replace(" ","_")
         if re.match(regexcategory_name, category_name):
 
             if category_name != '' and category_name.strip():
