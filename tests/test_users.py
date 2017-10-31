@@ -15,7 +15,7 @@ class TestUsers(TestCase):
 
     def test_register_user(self):
         """Test registration when all inputs are stored in the dictionary."""
-        result = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
+        result = self.new_user.register_user("kaguna", "kagunaa@gmail.com", "qwerty123", "qwerty123")
         self.assertEqual("dict_success", result, "User registration successful")
 
     def test_null_email_field(self):
@@ -60,7 +60,7 @@ class TestUsers(TestCase):
 
     def test_passwordEqualCpassword_field(self):
         """ This will test whether the password match the confirm password"""
-        comparepasswordresult = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password1")
+        comparepasswordresult = self.new_user.register_user("kaguna", "kaguuna@gmail.com", "qwerty123", "jimmy987")
         self.assertEqual("match_passwords", comparepasswordresult, "The passwords given do not match.")
 
         """
