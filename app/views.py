@@ -142,7 +142,9 @@ def create_recipe():
             category_name = request.form['cat_name']
             category_owner = request.form['cat_owner']
             recipe_name = request.form['recipe_name']
-            create_recipe = newCategory.create_recipe(recipe_name, category_name, category_owner)
+            recipe_procedure = request.form['procedure']
+
+            create_recipe = newCategory.create_recipe(recipe_name, category_name, recipe_procedure, category_owner)
             """This retrieves all the recipes belonging to the category and the user in session"""
             list_recipes = newCategory.view_recipes(category_name, g.user)
             if create_recipe == "success":

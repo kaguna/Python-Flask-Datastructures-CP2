@@ -24,10 +24,10 @@ class Categories(object):
 
         regexcategory_name = "[a-zA-Z0-9- .]"
 
-        category_name = category_name.replace(" ","_")
+
         if re.match(regexcategory_name, category_name):
 
-            if category_name != '' and category_name.strip():
+            if category_name != '' and category_name != ' ' and category_name.strip():
                 if self.categories != []:
                     if similar_cat_list == []:
                         self.categories.append([category_name, category_owner, ])
@@ -92,7 +92,7 @@ class Categories(object):
                 del personal_categories[category_list_index]
         return personal_categories
 
-    def create_recipe(self, recipe_name, category_name, category_owner):
+    def create_recipe(self, recipe_name, category_name,recipe_procedure, category_owner):
         """This will add a recipe to the list"""
         specific_category_recipes = [recipes for recipes in self.recipes
                                if category_name in recipes]
@@ -104,13 +104,13 @@ class Categories(object):
 
         if re.match(regexrecipe_name, recipe_name):
 
-            if recipe_name != '' and recipe_name.strip():
+            if recipe_name != '' and recipe_name.strip() and recipe_procedure.strip():
                 if self.recipes != []:
                     if similar_recipe_list == []:
-                        self.recipes.append([recipe_name, category_name, category_owner,])
+                        self.recipes.append([recipe_name, category_name,recipe_procedure, category_owner,])
                         return "success"
                     return "recipename_uniqueness"
-                self.recipes.append([recipe_name,category_name, category_owner])
+                self.recipes.append([recipe_name,category_name,recipe_procedure, category_owner])
                 return "success"
             return "null_empty_field"
         return "recipename_pattern"
@@ -118,13 +118,13 @@ class Categories(object):
     def view_recipes(self, category_name, recipe_owner):
         """Displays the specific category's recipes"""
         specific_category_recipes = [recipes for recipes in self.recipes
-                                     if recipe_owner == recipes[2] and category_name == recipes[1]]
+                                     if recipe_owner == recipes[3] and category_name == recipes[1]]
         return specific_category_recipes
 
     def edit_recipe(self, current_recipe_name, new_recipe_name, category_name, recipe_owner):
         """Update the category name"""
         specific_category_recipes = [recipes for recipes in self.recipes
-                                     if recipe_owner == recipes[2] and category_name == recipes[1]]
+                                     if recipe_owner == recipes[3] and category_name == recipes[1]]
 
         similar_recipe_list = [searched_recipe_name for searched_recipe_name in specific_category_recipes
                             if searched_recipe_name[0] == new_recipe_name]
@@ -146,7 +146,7 @@ class Categories(object):
     def delete_recipe(self, recipe_name, category_name, recipe_owner):
         """This will delete the recipes"""
         specific_category_recipes = [recipes for recipes in self.recipes
-                                     if recipe_owner == recipes[2] and category_name == recipes[1]]
+                                     if recipe_owner == recipes[3] and category_name == recipes[1]]
         for recList in specific_category_recipes:
             if recipe_name in recList:
                 recipe_list_index = specific_category_recipes.index(recList)
