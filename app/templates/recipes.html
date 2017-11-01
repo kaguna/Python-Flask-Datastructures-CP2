@@ -63,8 +63,8 @@
 							{% for myRecipes in rec_name %}
 							<tr>
 								<td>{{ myRecipes[0] }}</td>
-                                <td><a href="#view_procedure{{ myRecipes[0] }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-eye-open"></i></a></td>
-								<td><a href="#edit_recipe{{ myRecipes[0] }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                                <td><a href="#view_procedure{{ myRecipes[0].replace(' ','' ) }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+								<td><a href="#edit_recipe{{ myRecipes[0].replace(' ','' )}}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
 								<td>
                                 <form action="/delete_recipe" method="POST">
                                     <input type="hidden" name="category_name" class="form-control" value="{{ cat_name }}" hidden>
@@ -74,7 +74,7 @@
                                 </td>
 							</tr>
                             <!-- Modal for updating recipe name -->
-								<div class="modal fade" id="edit_recipe{{ myRecipes[0] }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+								<div class="modal fade" id="edit_recipe{{ myRecipes[0].replace(' ','' ) }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
 									<div class="modal-dialog">
 										<!-- Content of modal-->
 										<div class="modal-content">
@@ -105,7 +105,7 @@
 								</div>
 							</div>
                             <!-- Modal for viewing the the recipe procedure -->
-								<div class="modal fade" id="view_procedure{{ myRecipes[0] }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+								<div class="modal fade" id="view_procedure{{ myRecipes[0].replace(' ','' ) }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
 									<div class="modal-dialog">
 										<!-- Content of modal-->
 										<div class="modal-content">
