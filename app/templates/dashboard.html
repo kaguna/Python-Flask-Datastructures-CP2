@@ -1,3 +1,4 @@
+<!--This file will display the categories as per the specific user-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,10 +52,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% if cat_name == None %}
+								{% if category_details == None %}
 								no data
 								{% else %}
-								{% for myCategories in cat_name %}
+								{% for myCategories in category_details %}
 								<tr>
 									<td>{{ myCategories[0] }}</td>
 									<td><a href="/recipes/{{ myCategories[0] }}"><i class="glyphicon glyphicon-eye-open"></i></a></td>
@@ -80,8 +81,8 @@
 										<div class="modal-body">
 											<form action="/edit_category" method="POST">
 												<div class="form-group">
-                                                    <input type="hidden" name="current_cat_name" class="form-control" value="{{ myCategories[0] }}" hidden>
-													<input type="text" name="cat_name" class="form-control" placeholder="category name ({{ myCategories[0] }})">
+                                                    <input type="hidden" name="current_category_name" class="form-control" value="{{ myCategories[0] }}" hidden>
+													<input type="text" name="category_name" class="form-control" placeholder="category name ({{ myCategories[0] }})">
 												</div>
 												<!-- Modal Footer -->
 												<div class="modal-footer">

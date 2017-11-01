@@ -1,4 +1,4 @@
-
+<!--This page displays the specific category recipes for a specific user-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +23,14 @@
 	<div class="col-sm-offset-3">
 		<div class="col-sm-9">
 			<div class="panel panel-default">
-				<div class="pane panel-heading">Recipe ({{ cat_name }})</div>
+				<div class="pane panel-heading">Below are the Recipes for category {{ category_details }}</div>
 				<div class="panel panel-body">
 					<div class="alert alert-{{ alerttype }}">{{ message }}</div>
 					<form method="POST" action="/create_recipe">
 						<div class="row">
 							<div class="form-group col-sm-8">
 								<input type="hidden" name="cat_owner" value="{{ session['email'] }}" class="form-control" placeholder="Category owner" hidden>
-								<input type="hidden" name="cat_name" value="{{ cat_name }}" class="form-control" placeholder="Category name" hidden>
+								<input type="hidden" name="category_name" value="{{ category_details }}" class="form-control" placeholder="Category name" hidden>
 								<input type="text" name="recipe_name" class="form-control" placeholder="Recipe Name" required>
 							</div>
 						</div>
@@ -44,7 +44,6 @@
 								<button class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Create Recipe</button>
 							</div>
                         </div>
-						</div>
 					</form>
 					<hr>
 					<table class="table table-stripped">
@@ -57,17 +56,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% if rec_name == None %}
+							{% if recipe_details == None %}
 							no data
 							{% else %}
-							{% for myRecipes in rec_name %}
+							{% for myRecipes in recipe_details %}
 							<tr>
 								<td>{{ myRecipes[0] }}</td>
                                 <td><a href="#view_procedure{{ myRecipes[0].replace(' ','' ) }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-eye-open"></i></a></td>
 								<td><a href="#edit_recipe{{ myRecipes[0].replace(' ','' )}}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
 								<td>
                                 <form action="/delete_recipe" method="POST">
-                                    <input type="hidden" name="category_name" class="form-control" value="{{ cat_name }}" hidden>
+                                    <input type="hidden" name="category_name" class="form-control" value="{{ category_details }}" hidden>
                                     <input type="hidden" name="recipe_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
                                     <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                                 </form>
@@ -85,15 +84,15 @@
 												<span aria-hidden="true">&times;</span>
 												<span class="sr-only">Close</span>
 											</button>
-											<h4 class="modal-title" id="modal_label">Edit Recipe ({{ myRecipes[0] }})</h4>
+											<h4 class="modal-title">Edit Recipe ({{ myRecipes[0] }})</h4>
 										</div>
 										<!-- Modal Body -->
 										<div class="modal-body">
 											<form action="/edit_recipe" method="POST">
 												<div class="form-group">
-													<input type="hidden" name="category_name" class="form-control" value="{{ cat_name }}" hidden>
-                                                    <input type="hidden" name="current_rec_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
-													<input type="text" name="new_rec_name" class="form-control" placeholder="Recipe name ({{ myRecipes[0] }})">
+													<input type="hidden" name="category_name" class="form-control" value="{{ category_details }}" hidden>
+                                                    <input type="hidden" name="current_recipe_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
+													<input type="text" name="new_recipe_name" class="form-control" placeholder="Recipe name ({{ myRecipes[0] }})">
 												</div>
 												<!-- Modal Footer -->
 												<div class="modal-footer">

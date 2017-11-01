@@ -9,13 +9,9 @@ class TestCategories(TestCase):
         """This method defines the test fixture for all test to be undertaken"""
         self.new_category = Categories()
 
-        """
-        This will test category name entry under all circumstances.
-        """
-
     def test_pattern_categoryname(self):
         """Test if category name follows the pattern given"""
-        catnamepattern =  self.new_category.create_category("#^" ,"kaguna@gmail.com" )
+        catnamepattern = self.new_category.create_category("#^", "kaguna@gmail.com")
         self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
 
     def test_categoryname_exist(self):
@@ -31,9 +27,3 @@ class TestCategories(TestCase):
         self.new_category.create_category("lunch", "kaguna@gmail.com")
         create_catname = self.new_category.create_category("supper", "kagunaa@gmail.com")
         self.assertEqual("success", create_catname, "Category created successfully.")
-
-
-
-
-
-

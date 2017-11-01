@@ -1,3 +1,4 @@
+# This file will run the tests for the user credentials provided in the form
 from unittest import TestCase
 from classes.users import Users
 
@@ -9,9 +10,7 @@ class TestUsers(TestCase):
         """This method defines the test fixture for all test to be undertaken"""
         self.new_user = Users()
 
-        """
-        This will test all the registration credentials under all circumstances.
-        """
+    # This will test all the registration credentials under all circumstances.
 
     def test_register_user(self):
         """Test registration when all inputs are stored in the dictionary."""
@@ -63,14 +62,11 @@ class TestUsers(TestCase):
         comparepasswordresult = self.new_user.register_user("kaguna", "kaguuna@gmail.com", "qwerty123", "jimmy987")
         self.assertEqual("match_passwords", comparepasswordresult, "The passwords given do not match.")
 
-        """
-        This will test the login credentials under all given conditions.
-        """
+    # This will test the login credentials under all given conditions.
+
     def test_login_success(self):
         """ Test the inputs required for a valid login"""
-        self.new_user.users = {}
-        self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
-        validlogin= self.new_user.user_login("kaguna@gmail.com", "password")
+        validlogin= self.new_user.user_login("kaguna@gmail.com", "password123")
         self.assertEqual("success", validlogin, "Login successful.")
 
     def test_login_match_password(self):
