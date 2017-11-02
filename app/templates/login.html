@@ -23,7 +23,7 @@
 			<div class="pane panel-heading">Login Panel</div>	
 				<div class="panel panel-body">
 					{% if message %}
-					<div class="alert alert-danger">{{ message }}</div>
+					<div class="alert alert-{{ alerttype }}">{{ message }}</div>
 					{% endif %}
 					<div>
 						<form action="/login" method="POST">

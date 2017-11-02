@@ -23,7 +23,7 @@
 			<div class="pane panel-heading"><i class="glyphicon glyphicon-plus"></i> Create Account</div>	
 				<div class="panel panel-body">
 					{% if message %}
-					<div class="alert alert-danger">{{ message }}</div>
+					<div class="alert alert-{{ alerttype }}">{{ message }}</div>
 					{% endif %}
 						<form action="/register" method="POST">
 							<div class="row">

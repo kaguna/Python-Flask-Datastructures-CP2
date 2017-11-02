@@ -49,35 +49,35 @@ def register():
             # and redirects the user to the login page.
 
             session['username'] = username
-            return_message = "Registration was successful."
-            return render_template('login.html', message=return_message)
+            return_message = "Registration was successful. Login here."
+            return render_template('login.html', message=return_message, alerttype="success")
 
         elif registration_return_value == "check_null_fields":
             return_message = "Please fill in all the fields"
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
 
         elif registration_return_value == "check_username_pattern":
             return_message = "Invalid username format."
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
 
         elif registration_return_value == "check_password_length":
             return_message = "Password must have a minimum of 8 characters."
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
 
         elif registration_return_value == "check_username_existence":
             return_message = "Username already exists."
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
         elif registration_return_value == "match_passwords":
             return_message = "Passwords did not match."
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
 
         elif registration_return_value == "check_email_pattern":
             return_message = "Invalid email format."
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
 
         elif registration_return_value == "check_email_existence":
             return_message = "Email already exists"
-            return render_template("register.html", message=return_message)
+            return render_template("register.html", message=return_message, alerttype="danger")
     return render_template("register.html")
 
 
@@ -105,14 +105,14 @@ def login():
 
         elif login_return_value == "check_email_password_existence":
             return_message = "Wrong credentials given."
-            return render_template("login.html", message=return_message)
+            return render_template("login.html", message=return_message, alerttype="danger")
 
         elif login_return_value == "check_null_empty_fields":
             return_message = "Please fill all fields"
-            return render_template("login.html", message=return_message)
+            return render_template("login.html", message=return_message, alerttype="danger")
         else:
             return_message = "Invalid credentials, try again"
-            return render_template("login.html", message=return_message)
+            return render_template("login.html", message=return_message, alerttype="danger")
     return render_template("login.html")
 
 
