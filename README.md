@@ -5,66 +5,71 @@
 
 # Yummy-Recipes
 
-Yummy-Recipes is an app that manages users recipes. User can create an account. Using the credentials, the user can login to access the dashboard where registration of the recipe categories take place.
-All operations on the category are displayed. Click on the specific category and create a recipe for the category. All the operations on the recipe are displayed.
-# Contains
+Yummy-Recipes is an app that manages users recipes. User can create an account. Using the credentials, 
+the user can login to access the dashboard where registration of the categories take place.
+All operations on the category are displayed. Click **view** to open the recipe under the 
+category created. Once on the recipes page of the specific category, you can create a recipe 
+by providing *recipe name* and the *procedure* to prepare the recipe.
+While on the recipes page you can *view*, *update* or *delete* the recipe.
+#### Contains
 
-The application contains the user interfaces for the Yummy-Recipes which are contained in the designs directory,
+The application contains the user interfaces for the Yummy-Recipes which are contained in 
+the designs directory,
 
-UML diagrams for the Project
+UML diagrams for the Project contained in the UML directory
 
 The falsk application for Yummy-Recipes contained in the app directory
 
-# Prerequisites
+#### Prerequisites
 
-python 3.6 or a later python version is required to run this app.
+Python 3.6 or a later python version is required to run this app.
 
-# Installing
+#### Installing
 clone the repository
 
-FOR HTTPS
+FOR HTTPS:
 https://github.com/kaguna/Yummy-Recipes
 
-FOR SSH
-
+FOR SSH: 
 git@github.com:kaguna/Yummy-Recipes.git
 
-# Change Directory into the project folder
+#### Change Directory into the project folder
 
-$ cd Yummy-Recipes
+`$ cd Yummy-Recipes`
 
-# Create a virtual environment with Python 3.6
+#### Create a virtual environment with Python 3.6
 
-$ virtualenv --python=python3.6 yourenvname
+`$ virtualenv --python=python3.6 yourenvname`
 
-# Activate the virtual environment you have just created
+#### Activate the virtual environment you have just created
 
-$ source yourenvname/bin/activate
+`$ source yourenvname/bin/activate`
 
-# Install the application's dependencies from requirements.txt to the virtual environment
+#### Install the application's dependencies from requirements.txt to the virtual environment
 
-$ (yourenvname) pip install -r requirements.txt
+`$ (yourenvname) pip install -r requirements.txt`
 
-# Set up Unit Test Environment
+#### Set up Unit Test Environment
 
-run the following command to install nose unit testing environment:
+Run the following command to install nose unit testing environment:
 
-$ (yourenvname) pip install nosetests
+`$ (yourenvname) pip install nosetests`
 
 This will enable you to run tests to all the files in the Yummy-Recipes directory.
 
-$ cd --working directory--
+`$ cd --working directory--`
 
-$ (yourenvname) nosetests
+`$ (yourenvname) nosetests`
 
-# Running the program
+#### Running the program
 
 Run the program by typing the command in your terminal :
 
-$  (yourenvname) python app.py 
+`$  (yourenvname) python app.py` 
 
 You can now use the application.
 
-The Yummy-Recipes is live at heroku. click the link below.
+The Yummy-Recipes is live at heroku. click  [Yummy-Recipes](https://recipes-yummy.herokuapp.com) 
+to open.
 
-https://recipes-yummy.herokuapp.com
+
