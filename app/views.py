@@ -2,14 +2,22 @@
 from flask import Flask, render_template, request, session, g
 from classes.users import Users
 from classes.categories import Categories
+from classes.recipes import Recipes
+
 import os
 app = Flask(__name__)
 from app import app
+app.secret_key = os.urandom(24)
+# Needed to keep the client sessions secure
 
 newUser = Users()
 # This is creating an instance of the class users
 newCategory = Categories()
 # This is creating an instance of the class Categories
+
+newRecipes = Recipes()
+# This is creating an instance of the class Categories
+
 
 
 @app.route("/")
@@ -99,9 +107,6 @@ def login():
             return_message = "Wrong credentials given."
             return render_template("login.html", message=return_message)
 
-        elif login_return_value == "check_email_password_existence":
-            return_message = "Invalid credentials given."
-            return render_template("login.html", message=return_message)
         elif login_return_value == "check_null_empty_fields":
             return_message = "Please fill all fields"
             return render_template("login.html", message=return_message)
@@ -164,7 +169,7 @@ def recipes(category):
     This method uses category name to route to the specific category's recipes
     """
     if g.user:
-        list_recipes = newCategory.view_recipes(category, g.user)
+        list_recipes = newRecipes.view_recipes(category, g.user)
         # The variable list_recipes returns a list of the recipes belonging to the
         # user in session under a specific category name
 
@@ -184,11 +189,11 @@ def create_recipe():
             recipe_name = request.form['recipe_name']
             recipe_procedure = request.form['procedure']
 
-            create_recipe = newCategory.create_recipe(
+            create_recipe = newRecipes.create_recipe(
                 recipe_name, category_name, recipe_procedure, category_owner)
             # The create recipe requires the above parameters to create the recipe from a specific category.
 
-            list_recipes = newCategory.view_recipes(category_name, g.user)
+            list_recipes = newRecipes.view_recipes(category_name, g.user)
             if create_recipe == "register_recipe_success":
                 msg_flag = "Recipe created successfully"
                 return render_template("recipes.html", message=msg_flag, alerttype="success",
@@ -282,8 +287,8 @@ def edit_recipe():
             category_name = request.form['category_name']
             new_recipe_name = request.form['new_recipe_name']
             current_recipe_name = request.form['current_recipe_name']
-            list_recipes = newCategory.view_recipes(category_name, g.user)
-            edit_rec = newCategory.edit_recipe(
+            list_recipes = newRecipes.view_recipes(category_name, g.user)
+            edit_rec = newRecipes.edit_recipe(
                 current_recipe_name, new_recipe_name, category_name, g.user)
             if edit_rec == "success":
                 msg_flag = "Recipe name changed."
@@ -318,12 +323,12 @@ def delete_recipe():
         if request.method == "POST":
             category_name = request.form['category_name']
             recipe_name = request.form['recipe_name']
-            delete_recip = newCategory.delete_recipe(
+            delete_recipe = newRecipes.delete_recipe(
                 recipe_name, category_name, g.user)
             msg_flag = "Recipe name deleted."
-            list_recipes = newCategory.view_recipes(category_name, g.user)
+            list_recipes = newRecipes.view_recipes(category_name, g.user)
             return render_template("recipes.html", message=msg_flag, alerttype="success",
-                                   recipe_details=list_recipes, category_details=category_name)
+                                   recipe_details=delete_recipe, category_details=category_name)
         return render_template("recipes.html")
     return render_template("login.html")
 
