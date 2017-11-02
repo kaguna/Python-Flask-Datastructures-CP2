@@ -12,19 +12,22 @@ class Users(object):
         self.email = email
         self.password = password
 
-    def register_user(self, username, email, password, cpassword):
-        """This method will validate and verify the user details before storing"""
-        username = re.sub(r'\s+', ' ', username).strip()
+    def register_user(self, username, email, password, confirm_password):
+        """
+        This method will validate and verify the user details before storing
+        """
+        nonspace_username = re.sub(r'\s+', ' ', username).strip()
         regusername = "[a-zA-Z0-9- .]"
         regemail = r"([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-        if re.match(regusername, username):
-            if username != '' and username != ' ' and email != '' and password != '' and cpassword.strip():
-                if username not in users.keys():
+        if re.match(regusername, nonspace_username):
+            if nonspace_username != '' and nonspace_username != ' ' and email != '' and password != '' \
+                    and confirm_password.strip():
+                if nonspace_username not in users.keys():
                     if email not in users.keys():
-                        if password == cpassword:
+                        if password == confirm_password:
                             if re.search(regemail, email):
                                 if len(password) >= 8:
-                                    users[email] = {'uname': username,
+                                    users[email] = {'username': nonspace_username,
                                                     'email': email,
                                                     'password': password,
                                                     }
@@ -53,13 +56,13 @@ class Users(object):
     def get_username(self, email):
         """ Get username from the email provided by the user"""
         if email in users.keys():
-            res_user = users[email]
-            return res_user['uname']
+            user_key_email = users[email]
+            return user_key_email['username']
         return False
 
     def get_email(self, email):
         """Retrieve the email for the user already registered"""
         if email in users.keys():
-            res_email = users[email]
-            return res_email['email']
+            user_key_email = users[email]
+            return user_key_email['email']
         return False

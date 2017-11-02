@@ -122,7 +122,8 @@ def create_category():
     This method accepts data from the create category form and routes
     it to the method in the category class.
     """
-    if g.user:  # checks whether the user is ni session first
+    if g.user:
+        # checks whether the user is ni session first
         if request.method == "POST":
             category_name = request.form['cat_name']
             category_owner = request.form['cat_owner']
@@ -133,22 +134,22 @@ def create_category():
             list_categories = newCategory.view_category(category_owner)
             # The list_categories retrieves all the categories belonging to the user in session
 
-            if create_category == "success":
+            if create_category == "check_category_creation_success":
                 return_message = "Category created successfully"
                 return render_template("dashboard.html", message=return_message,
                                        alerttype="success", category_details=list_categories)
 
-            elif create_category == "null_empty_field":
+            elif create_category == "check_null_empty_field":
                 return_message = "Please input the category name of the field."
                 return render_template("dashboard.html", message=return_message,
                                        alerttype="danger", category_details=list_categories)
 
-            elif create_category == "catname_pattern":
+            elif create_category == "check_invalid_category_name":
                 return_message = "Invalid category name format."
                 return render_template("dashboard.html", message=return_message,
                                        alerttype="danger", category_details=list_categories)
 
-            elif create_category == "catname_uniqueness":
+            elif create_category == "check_category_name_existence":
                 return_message = "Similar category name found."
                 return render_template("dashboard.html", message=return_message,
                                        alerttype="danger", category_details=list_categories)
@@ -194,7 +195,7 @@ def create_recipe():
             # The create recipe requires the above parameters to create the recipe from a specific category.
 
             list_recipes = newRecipes.view_recipes(category_name, g.user)
-            if create_recipe == "register_recipe_success":
+            if create_recipe == "check_register_recipe_success":
                 msg_flag = "Recipe created successfully"
                 return render_template("recipes.html", message=msg_flag, alerttype="success",
                                        recipe_details=list_recipes, category_details=category_name)
@@ -238,21 +239,21 @@ def edit_category():
             edit_category = newCategory.edit_category(
                 current_name, category_name, category_owner)
             #
-            if edit_category == "success":
+            if edit_category == "success_on_edit":
                 return_message = "Category name changed."
                 return render_template("dashboard.html", message=return_message, alerttype="success",
                                        category_details=list_categories)
-            elif edit_category == "null_empty_field":
+            elif edit_category == "check_null_empty_field":
                 return_message = "Please input the the category name."
                 return render_template("dashboard.html", message=return_message, alerttype="danger",
                                        category_details=list_categories)
 
-            elif edit_category == "categoryname_pattern":
+            elif edit_category == "check_invalid_category_name":
                 return_message = "Invalid category name format."
                 return render_template("dashboard.html", message=return_message, alerttype="danger",
                                        category_details=list_categories)
 
-            elif edit_category == "categoryname_uniqueness":
+            elif edit_category == "check_category_name_existence":
                 return_message = "Similar category name found."
                 return render_template("dashboard.html", message=return_message, alerttype="danger",
                                        category_details=list_categories)
@@ -290,21 +291,21 @@ def edit_recipe():
             list_recipes = newRecipes.view_recipes(category_name, g.user)
             edit_rec = newRecipes.edit_recipe(
                 current_recipe_name, new_recipe_name, category_name, g.user)
-            if edit_rec == "success":
+            if edit_rec == "check_recipe_update_success":
                 msg_flag = "Recipe name changed."
                 return render_template("recipes.html", message=msg_flag, alerttype="success",
                                        recipe_details=list_recipes, category_details=category_name)
-            elif edit_rec == "null_empty_field":
+            elif edit_rec == "check_null_empty_field":
                 msg_flag = "Please input the the category name."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
                                        recipe_details=list_recipes, category_details=category_name)
 
-            elif edit_rec == "recipename_pattern":
+            elif edit_rec == "check_invalid_recipename":
                 msg_flag = "Invalid recipe name format."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
                                        recipe_details=list_recipes, category_details=category_name)
 
-            elif edit_rec == "recipename_uniqueness":
+            elif edit_rec == "check_recipename_existence":
                 msg_flag = "Similar recipe name found."
                 return render_template("recipes.html", message=msg_flag, alerttype="danger",
                                        recipe_details=list_recipes, category_details=category_name)

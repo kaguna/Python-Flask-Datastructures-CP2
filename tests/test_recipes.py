@@ -47,7 +47,7 @@ class TestRecipes(TestCase):
         self.new_category.create_recipe("Githeri", "lunch", "add description of recipe", "kaguna@gmail.com")
         create_recname = self.new_category.create_recipe("ugali", "supper", "add description of recipe",
                                                          "kaguna@gmail.com")
-        self.assertEqual("register_recipe_success", create_recname, "Recipe created successfully.")
+        self.assertEqual("check_register_recipe_success", create_recname, "Recipe created successfully.")
 
     # Below functions will test recipe name entry when updating a recipe.
 
@@ -63,4 +63,4 @@ class TestRecipes(TestCase):
         self.new_category.recipes = []
         self.new_category.create_recipe("ugali", "Sembe", "Lunch", "kaguna@gmail.com")
         create_recname = self.new_category.create_recipe("ugali", "ngima", "Lunch", "kaguna@gmail.com")
-        self.assertEqual("register_recipe_success", create_recname, "Recipe updated successfully.")
+        self.assertEqual("check_recipe_update_success", create_recname, "Recipe updated successfully.")

@@ -12,30 +12,30 @@ class TestCategories(TestCase):
     def test_pattern_categoryname(self):
         """Test if category name follows the pattern given"""
         catnamepattern = self.new_category.create_category("#^", "kaguna@gmail.com")
-        self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
+        self.assertEqual("check_invalid_category_name", catnamepattern, "Invalid category name.")
 
     def test_categoryname_exist(self):
         """Test if category name exists in the list"""
         self.new_category.categories = []
         self.new_category.create_category("lunch", "kaguna@gmail.com")
         catnameexist = self.new_category.create_category("lunch", "kaguna@gmail.com")
-        self.assertEqual("catname_uniqueness", catnameexist, "Category name exists.")
+        self.assertEqual("check_category_name_existence", catnameexist, "Category name exists.")
 
     def test_categoryname_create(self):
         """Test if category name is different and register"""
         self.new_category.categories = []
         self.new_category.create_category("lunch", "kaguna@gmail.com")
         create_catname = self.new_category.create_category("supper", "kagunaa@gmail.com")
-        self.assertEqual("success", create_catname, "Category created successfully.")
+        self.assertEqual("check_category_creation_success", create_catname, "Category created successfully.")
 
     # Below methods will test when updating the category name
 
     def test_pattern_update_categoryname(self):
         """Test if category name follows the pattern given"""
         category_name_pattern = self.new_category.edit_category("Luncho", "@@@", "karyorkir@gmail.com")
-        self.assertEqual("categoryname_pattern", category_name_pattern, "Invalid category name.")
+        self.assertEqual("check_invalid_category_name", category_name_pattern, "Invalid category name.")
 
     def test_pattern_update_categoryname(self):
         """Test if category name is empty"""
         category_name_empty = self.new_category.edit_category("Luncho", " ", "karyorkir@gmail.com")
-        self.assertEqual("null_empty_field", category_name_empty, "Invalid category name.")
+        self.assertEqual("check_null_empty_field", category_name_empty, "Invalid category name.")
