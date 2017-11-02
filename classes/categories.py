@@ -61,19 +61,19 @@ class Categories(object):
         regexcategory_name = "[a-zA-Z0-9- .]"
         if re.match(regexcategory_name, new_name):
             if new_name != '' and new_name.strip():
-                for catList in personal_categories:
-                    if current_name in catList:
+                for categoryList in personal_categories:
+                    if current_name in categoryList:
                         if similar_category_name == []:
-                            category_name_index = personal_categories.index(catList)
+                            category_name_index = personal_categories.index(categoryList)
                             personal_categories[category_name_index][0] = new_name
-                            # Update the category name in the recipes list
-                            for recList in self.newRecipe.recipes:
-                                if current_name in recList:
+                            """Update the category name in the recipes list"""
+                            for recipeList in self.newRecipe.recipes:
+                                if current_name in recipeList:
                                     for index in range(0, len(self.newRecipe.recipes)):
-                                        # loop all the indexes with the current
+                                        """loop all the indexes with the current"""
                                         self.newRecipe.recipes[index][1] = new_name
-                                        return "success"
-                                return "category_name_not_found"
+                                    return "success"
+                            return "success"
                         return "categoryname_uniqueness"
             return "null_empty_field"
         return "categoryname_pattern"

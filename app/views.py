@@ -67,7 +67,7 @@ def register():
         elif registration_return_value == "check_username_existence":
             return_message = "Username already exists."
             return render_template("register.html", message=return_message, alerttype="danger")
-        elif registration_return_value == "match_passwords":
+        elif registration_return_value == "check_match_passwords":
             return_message = "Passwords did not match."
             return render_template("register.html", message=return_message, alerttype="danger")
 
