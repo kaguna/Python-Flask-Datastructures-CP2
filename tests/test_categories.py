@@ -14,6 +14,11 @@ class TestCategories(TestCase):
         catnamepattern = self.new_category.create_category("#^", "kaguna@gmail.com")
         self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
 
+    def test_empty_categoryname(self):
+        """Test if category name is empty"""
+        catname_empty = self.new_category.create_category(" ", "kaguna@gmail.com")
+        self.assertEqual("null_empty_field", catname_empty, "Please fill in the category name.")
+
     def test_categoryname_exist(self):
         """Test if category name exists in the list"""
         self.new_category.categories = []
@@ -35,5 +40,7 @@ class TestCategories(TestCase):
         category_name_pattern = self.new_category.edit_category("Luncho", "@@@", "karyorkir@gmail.com")
         self.assertEqual("categoryname_pattern", category_name_pattern, "Invalid category name.")
 
-
-
+    def test_pattern_update_categoryname(self):
+        """Test if category name is empty"""
+        category_name_empty = self.new_category.edit_category("Luncho", " ", "karyorkir@gmail.com")
+        self.assertEqual("null_empty_field", category_name_empty, "Invalid category name.")
