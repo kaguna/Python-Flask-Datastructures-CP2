@@ -1,18 +1,18 @@
 # This file handles the class for the categories and the CRUD methods associated to the categories
 import re
-from .users import Users
+from classes.recipes import Recipes
 
 
-class Categories(Users):
+class Categories(object):
     """This class will handle all the functions related to the categories and recipes"""
     categories = []
-    recipes = []
 
     def __init__(self, category_name=None, recipe_name=None):
         """constructor to initialize the global variables"""
 
         self.category_name = category_name
         self.recipe_name = recipe_name
+        self.newRecipe = Recipes()
 
     def create_category(self, category_name, category_owner):
         """This will create new and unique category"""
@@ -67,11 +67,11 @@ class Categories(Users):
                             category_name_index = personal_categories.index(catList)
                             personal_categories[category_name_index][0] = new_name
                             # Update the category name in the recipes list
-                            for recList in self.recipes:
+                            for recList in self.newRecipe.recipes:
                                 if current_name in recList:
-                                    for index in range(0, len(self.recipes)):
+                                    for index in range(0, len(self.newRecipe.recipes)):
                                         # loop all the indexes with the current
-                                        self.recipes[index][1] = new_name
+                                        self.newRecipe.recipes[index][1] = new_name
                                         return "success"
                                 return "category_name_not_found"
                         return "categoryname_uniqueness"
@@ -86,14 +86,14 @@ class Categories(Users):
         personal_categories = [owner_list for owner_list in self.categories
                                if category_owner in owner_list]
 
-        specific_category_recipes = [recipes for recipes in self.recipes
+        specific_category_recipes = [recipes for recipes in self.newRecipe.recipes
                                      if category_owner == recipes[2] and category_name == recipes[1]]
         # Using list comprehensions retrieve all the recipes for a specific category"""
-        for recList in self.recipes:
+        for recList in self.newRecipe.recipes:
             if category_name in recList:
                 for index in range(0, len(specific_category_recipes)):
                     """loop all the indexes with the recipes of the specific category"""
-                del specific_category_recipes[index]
+                    del specific_category_recipes[index]
 
         for catList in personal_categories:
             if category_name in catList:

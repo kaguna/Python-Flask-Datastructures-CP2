@@ -1,10 +1,8 @@
 # This file handles the class for the recipes and the CRUD methods associated to the recipes
 import re
-from .categories import Categories
-from .users import Users
 
 
-class Recipes(Categories, Users):
+class Recipes(object):
     """This class will handle all the functions related to the categories and recipes"""
     recipes = []
 
