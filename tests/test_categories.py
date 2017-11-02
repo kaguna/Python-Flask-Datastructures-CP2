@@ -27,3 +27,13 @@ class TestCategories(TestCase):
         self.new_category.create_category("lunch", "kaguna@gmail.com")
         create_catname = self.new_category.create_category("supper", "kagunaa@gmail.com")
         self.assertEqual("success", create_catname, "Category created successfully.")
+
+    # Below methods will test when updating the category name
+
+    def test_pattern_update_categoryname(self):
+        """Test if category name follows the pattern given"""
+        category_name_pattern = self.new_category.edit_category("Luncho", "@@@", "karyorkir@gmail.com")
+        self.assertEqual("categoryname_pattern", category_name_pattern, "Invalid category name.")
+
+
+
