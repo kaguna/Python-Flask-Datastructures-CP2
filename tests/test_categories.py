@@ -14,11 +14,6 @@ class TestCategories(TestCase):
         catnamepattern = self.new_category.create_category("#^", "kaguna@gmail.com")
         self.assertEqual("catname_pattern", catnamepattern, "Invalid category name.")
 
-    def test_empty_categoryname(self):
-        """Test if category name is empty"""
-        catname_empty = self.new_category.create_category(" ", "kaguna@gmail.com")
-        self.assertEqual("null_empty_field", catname_empty, "Please fill in the category name.")
-
     def test_categoryname_exist(self):
         """Test if category name exists in the list"""
         self.new_category.categories = []
