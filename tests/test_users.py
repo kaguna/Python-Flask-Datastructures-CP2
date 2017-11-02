@@ -3,7 +3,7 @@ from unittest import TestCase
 from classes.users import Users
 
 
-class TestUsers(TestCase, Users):
+class TestUsers(TestCase):
     """This class will handle all the functions to test for the user entry functions"""
 
     def setUp(self):

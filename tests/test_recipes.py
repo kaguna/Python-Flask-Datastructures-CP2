@@ -1,9 +1,8 @@
 from unittest import TestCase
 from classes.recipes import Recipes
-from classes.users import Users
 
 
-class TestRecipes(TestCase, Recipes, Users):
+class TestRecipes(TestCase):
     """This class will handle all the functions to test for the recipe name"""
 
     def setUp(self):
