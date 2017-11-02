@@ -61,7 +61,7 @@
 									<td><a href="/recipes/{{ myCategories[0] }}"><i class="glyphicon glyphicon-eye-open"></i></a></td>
 									<td><a href="#edit_category{{ myCategories[0].replace(' ','' ) }}" role="button" data-toggle="modal" class="btn btn-default data"><i class="glyphicon glyphicon-pencil"></i></a></td>
 
-                                    <td><a href="/delete_category/{{ myCategories[0] }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                                    <td><a onclick="return confirm('Are you sure you want to delete category - {{ myCategories[0] }}')" href="/delete_category/{{ myCategories[0] }}"><i class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 								<!-- Modal -->
 								<div class="modal fade" id="edit_category{{ myCategories[0].replace(' ','' ) }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">

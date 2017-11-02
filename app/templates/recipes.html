@@ -68,7 +68,7 @@
                                 <form action="/delete_recipe" method="POST">
                                     <input type="hidden" name="category_name" class="form-control" value="{{ category_details }}" hidden>
                                     <input type="hidden" name="recipe_name" class="form-control" value="{{ myRecipes[0] }}" hidden>
-                                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                                    <button onclick="return confirm('Are you sure you want to delete recipe - {{ myRecipes[0] }}')" type="submit" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                                 </form>
                                 </td>
 							</tr>
@@ -133,6 +133,6 @@
 		</div>
 	</div>
 <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-   <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 </body>
 </html>
