@@ -1,8 +1,9 @@
 from unittest import TestCase
 from classes.categories import Categories
+from classes.users import Users
 
 
-class TestCategories(TestCase):
+class TestCategories(TestCase, Categories, Users):
     """This class will handle all the functions to test for the category name"""
 
     def setUp(self):
