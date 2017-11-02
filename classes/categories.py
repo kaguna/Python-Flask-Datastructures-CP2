@@ -1,17 +1,17 @@
 # This file handles the class for the categories and the CRUD methods associated to the categories
 import re
+from .users import Users
 
 
-class Categories(object):
+class Categories(Users):
     """This class will handle all the functions related to the categories and recipes"""
     categories = []
     recipes = []
 
-    def __init__(self, category_name=None, category_owner=None, recipe_name=None):
+    def __init__(self, category_name=None, recipe_name=None):
         """constructor to initialize the global variables"""
 
         self.category_name = category_name
-        self.category_owner = category_owner
         self.recipe_name = recipe_name
 
     def create_category(self, category_name, category_owner):
@@ -27,7 +27,7 @@ class Categories(object):
         # provided by the user.
         # In the case above i am using the list comprehension.
 
-        regexcategory_name = "[a-zA-Z0-9- .]"
+        regexcategory_name = "[a-zA-Z0-9-.]"
 
         if re.match(regexcategory_name, category_name):
 
@@ -48,7 +48,7 @@ class Categories(object):
         """This will display the categories for the user in session"""
         personal_categories = [owner_list for owner_list in self.categories if category_owner in owner_list]
         # personal_categories holds several categories belonging to the owner who has logged in using
-        # using list comprehessions.
+        # using list comprehensions.
         return personal_categories
 
     def edit_category(self, current_name, new_name, category_owner):
