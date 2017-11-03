@@ -1,13 +1,11 @@
-# This file handles the class for the categories and the CRUD methods
-# associated to the categories
+# This file handles the class for the categories and the
+# CRUD methods associated to the categories
 import re
 from classes.recipes import Recipes
 
 
 class Categories(object):
-    """
-    This class will handle all the functions related to the categories and recipes
-    """
+    """This class will handle all the functions related to the categories and recipes"""
     categories = []
 
     def __init__(self, category_name=None, recipe_name=None):
@@ -19,16 +17,15 @@ class Categories(object):
 
     def create_category(self, category_name, category_owner):
         """This will create new and unique category"""
-        personal_categories = [owner_list_of_categories for owner_list_of_categories in self.categories
-                               if category_owner in owner_list_of_categories]
-        # The personal_categories variable hold several categories associated with the
-        # user in session.In the case above i am using the list comprehension to retrieve
-        # the categories.
+        personal_categories = [owner_list for owner_list in self.categories
+                               if category_owner in owner_list]
+        # The personal_categories variable hold several categories associated with the user in session.
+        # In the case above i am using the list comprehension to retrieve the categories.
 
         similar_category_names = [searched_cat_name for searched_cat_name in personal_categories
                                   if searched_cat_name[0] == category_name]
-        # The similar_category_names checks whether there exists a similar category name
-        # to the one provided by the user.
+        # The similar_category_names checks whether there exists a similar category name to the one
+        # provided by the user.
         # In the case above i am using the list comprehension.
 
         regexcategory_name = "[a-zA-Z0-9- .]"
@@ -39,7 +36,6 @@ class Categories(object):
                 if self.categories != []:
                     if similar_category_names == []:
                         # If no such name registration takes place.
-
                         self.categories.append([category_name, category_owner, ])
                         return "check_category_creation_success"
                     return "check_category_name_existence"
@@ -49,11 +45,13 @@ class Categories(object):
         return "check_invalid_category_name"
 
     def view_category(self, category_owner):
-        """This will display the categories for the user in session"""
+        """
+        This will display the categories for the user in session
+        """
         personal_categories = [owner_list for owner_list in self.categories
                                if category_owner in owner_list]
-        # personal_categories holds several categories belonging to the owner
-        # who has logged in using list comprehensions.
+        # personal_categories holds several categories belonging to the owner who has logged in using
+        # using list comprehensions.
         return personal_categories
 
     def edit_category(self, current_name, new_name, category_owner):
@@ -87,9 +85,9 @@ class Categories(object):
         """
         This will help in  deleting the categories from user in session by providing the
         category name and the and the owner of the category.
-            """
-        personal_categories = [owner_list_of_categories for owner_list_of_categories in self.categories
-                               if category_owner in owner_list_of_categories]
+        """
+        personal_categories = [owner_list for owner_list in self.categories
+                               if category_owner in owner_list]
 
         specific_category_recipes = [specific_recipe for specific_recipe in self.newRecipe.recipes
                                      if category_owner == specific_recipe[2] and

@@ -72,7 +72,7 @@ class Recipes(object):
                                      category_name == specific_recipe[1]]
         for recipeList in specific_category_recipes:
             if recipe_name in recipeList:
-                recipe_list_position = specific_category_recipes.index(recipe_list_position)
+                recipe_list_position = specific_category_recipes.index(recipeList)
                 del self.recipes[recipe_list_position]
                 del specific_category_recipes[recipe_list_position]
         return specific_category_recipes
