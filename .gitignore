@@ -1,1 +1,15 @@
 .idea
+Pipfile
+Pipfile.lock
+virtualenv
+views.pycd
+venv
+categories.pyc
+users.pyc
+app.pyc
+__init__.pyc
+views.pyc
+config.pyc
+__pycache__/
+app/__pycache__/
+.cache/

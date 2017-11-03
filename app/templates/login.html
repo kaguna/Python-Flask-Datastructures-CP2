@@ -1,3 +1,4 @@
+<!--This page provides the user with the form to log in the details-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/register"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
-				<li><a href="dashboard.html"><span></span> Dashboard</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -22,21 +22,24 @@
 			<div class="panel panel-default">
 			<div class="pane panel-heading">Login Panel</div>	
 				<div class="panel panel-body">
+					{% if message %}
+					<div class="alert alert-{{ alerttype }}">{{ message }}</div>
+					{% endif %}
 					<div>
-						<form>
+						<form action="/login" method="POST">
 							<div class="row">
 								<div class="form-group col-sm-12">
-									<input type="text" class="form-control" placeholder="Email">
+									<input type="email" name="email" class="form-control" placeholder="Email">
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-12">
-									<input type="password" class="form-control" placeholder="Password">
+									<input type="password" name="password" class="form-control" placeholder="Password">
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-12">
-									<button class="btn btn-default"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+									<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-log-in"></i> Login</button>
 								</div>
 							</div>
 						</form>	
