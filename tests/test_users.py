@@ -22,20 +22,11 @@ class TestUsers(TestCase):
         nullemailresult = self.new_user.register_user("kaguna", "", "password", "password")
         self.assertEqual("check_null_fields", nullemailresult, "Please fill the Email field.")
 
-    def test_email_pattern1(self):
-        """ This will test whether the email has an @ symbol"""
-        emailpattern1 = self.new_user.register_user("kaguna", "kagunagmail.com", "password", "password")
-        self.assertEqual("check_email_pattern", emailpattern1, "Invalid email format.")
 
-    def test_email_pattern2(self):
+    def test_invalid_email(self):
         """ This will test whether the email has . symbol"""
-        emailpattern2 = self.new_user.register_user("kaguna", "kaguna@gmailcom", "password", "password")
-        self.assertEqual("check_email_pattern", emailpattern2, "Invalid email format.")
-
-    def test_email_pattern3(self):
-        """ This will test whether the email has a (@) and (.) symbol"""
-        emailpattern3 = self.new_user.register_user("kaguna", "kagunagmailcom", "password", "password")
-        self.assertEqual("check_email_pattern", emailpattern3, "Invalid email format.")
+        emailpattern = self.new_user.register_user("kaguna", "kaguna@gmailcom", "password", "password")
+        self.assertEqual("check_email_pattern", emailpattern, "Invalid email format.")
 
     def test_null_username_field(self):
         """ This will test whether the username field is null"""
@@ -52,12 +43,12 @@ class TestUsers(TestCase):
         nullcpasswordresult = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "")
         self.assertEqual("check_null_fields", nullcpasswordresult, "Please fill the confirm password field.")
 
-    def test_empty_cpassword_field(self):
+    def test_empty_cofirm_password_field(self):
         """ This will test whether the password field is empty"""
         emptycpasswordresult = self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", " ")
         self.assertEqual("check_null_fields", emptycpasswordresult, "Please fill the confirm password field.")
 
-    def test_passwordEqualCpassword_field(self):
+    def test_passwordEqualCofirmpassword_field(self):
         """ This will test whether the password match the confirm password"""
         comparepasswordresult = self.new_user.register_user("kaguna", "kaguuna@gmail.com", "qwerty123", "jimmy987")
         self.assertEqual("check_match_passwords", comparepasswordresult, "The passwords given do not match.")
