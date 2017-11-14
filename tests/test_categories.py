@@ -29,6 +29,14 @@ class TestCategories(TestCase):
         categoryname_exist = self.new_category.create_category("lunch", "kaguna@gmail.com")
         self.assertEqual("check_category_name_existence", categoryname_exist, "Category name exists.")
 
+    def test_empty_categoryname(self):
+        """
+        Test if category name is null
+        """
+        emptycategoryname = self.new_category.create_category(" ", "kaguna@gmail.com")
+        self.assertEqual("check_null_empty_field", emptycategoryname,
+                         "Please fill the Categoryname field.")
+
     def test_successful_categoryname_creation(self):
         """
         Test if category name is different and register
