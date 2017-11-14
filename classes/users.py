@@ -40,16 +40,19 @@ class Users(object):
 
     def user_login(self, email, password):
         """This will help the user log in and access the resources"""
-        if email != '' and password != '' and email != '  ' and password != '  ':
-            if email in users.keys():
-                result = users[email]
-                result_password = result['password']
-                if result_password == password:
+        if not (email and password):
+            return "check_null_empty_fields"
 
-                    return "login_success"
-                return "check_password_existence"
+        if email not in users.keys():
             return "check_email_password_existence"
-        return "check_null_empty_fields"
+
+        result_email = users[email]
+        result_password = result_email['password']
+
+        if result_password == password:
+            return "login_success"
+        else:
+            return "check_password_existence"
 
     def get_username(self, email):
         """ Get username from the email provided by the user"""
