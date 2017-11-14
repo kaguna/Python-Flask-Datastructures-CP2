@@ -22,21 +22,19 @@ class Users(object):
         if re.match(regusername, nonspace_username):
             if nonspace_username != '' and nonspace_username != ' ' and email != '' and password != '' \
                     and confirm_password.strip():
-                if nonspace_username not in users.keys():
-                    if email not in users.keys():
-                        if password == confirm_password:
-                            if re.search(regemail, email):
-                                if len(password) >= 8:
-                                    users[email] = {'username': nonspace_username,
+                if email not in users.keys():
+                    if password == confirm_password:
+                        if re.search(regemail, email):
+                            if len(password) >= 8:
+                                users[email] = {'username': nonspace_username,
                                                     'email': email,
                                                     'password': password,
                                                     }
-                                    return "registration_success"
-                                return "check_password_length"
-                            return "check_email_pattern"
-                        return "check_match_passwords"
-                    return "check_email_existence"
-                return "check_username_existence"
+                                return "registration_success"
+                            return "check_password_length"
+                        return "check_email_pattern"
+                    return "check_match_passwords"
+                return "check_email_existence"
             return "check_null_fields"
         return "check_username_pattern"
 
