@@ -62,12 +62,19 @@ class TestUsers(TestCase):
 
     # This will test the login credentials under all given conditions.
 
+    # def test_login_success(self):
+    #     """ Test the inputs required for a valid login"""
+    #     self.new_user.users = {}
+    #     self.new_user.register_user("kaguna", "kaguna@gmail.com", "qwerty123", "qwerty123")
+    #     valid_login= self.new_user.user_login("kaguna@gmail.com", "qwerty123")
+    #     self.assertEqual("login_success", valid_login, "Login successful")
+
     def test_login_success(self):
         """ Test the inputs required for a valid login"""
         self.new_user.users = {}
-        self.new_user.register_user("kaguna", "kaguna@gmail.com", "password123", "password123")
-        valid_login= self.new_user.user_login("kaguna@gmail.com", "password123")
-        self.assertEqual("check_password_existence", valid_login, "Login successful.")
+        self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
+        valid_login = self.new_user.user_login("kaguna@gmail.com", "password")
+        self.assertEqual("login_success", valid_login)
 
     def test_login_match_password(self):
         """ Test login when the password differs with the one in the dictionary.."""
@@ -98,13 +105,3 @@ class TestUsers(TestCase):
         """ Test login when password input is null"""
         nullpassword = self.new_user.user_login("kaguna@gmail.com", "")
         self.assertEqual("check_null_empty_fields", nullpassword, "Please fill the password field.")
-
-    def test_login_emptypassword(self):
-        """ Test login when password input is empty"""
-        emptypassword = self.new_user.user_login("kaguna@gmail.com", "  ")
-        self.assertEqual("check_null_empty_fields", emptypassword, "Password field should not be empty.")
-
-    def test_login_emptyemail(self):
-        """ Test login when password input is empty"""
-        emptyemail = self.new_user.user_login("  ", "password")
-        self.assertEqual("check_null_empty_fields", emptyemail, "Email field should not be empty.")
