@@ -14,8 +14,15 @@ class TestUsers(TestCase):
 
     def test_register_user(self):
         """Test registration when all inputs are stored in the dictionary."""
-        result = self.new_user.register_user("kaguna", "kagunaa@gmail.com", "qwerty123", "qwerty123")
-        self.assertEqual("registration_success", result, "User registration successful")
+        self.new_user.users = {}
+        self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
+        result = self.new_user.register_user("kagunaa", "kagunaa@gmail.com", "password", "password")
+        self.assertEqual("registration_success", result)
+
+    def test_password_length(self):
+        """Test if the password length is greater than 8 characters."""
+        passwordlength = self.new_user.register_user("kagunaa", "kagunaa@gmail.com", "pass", "pass")
+        self.assertEqual("check_password_length", passwordlength)
 
     def test_null_email_field(self):
         """ This will test whether the email field is null"""
@@ -74,7 +81,8 @@ class TestUsers(TestCase):
         self.new_user.users = {}
         self.new_user.register_user("kaguna", "kaguna@gmail.com", "password", "password")
         invalidmatchpassword = self.new_user.user_login("jimmy@gmail.com", "password")
-        self.assertEqual("check_email_password_existence", invalidmatchpassword, "Incorrect password given.")
+        self.assertEqual("check_email_password_existence", invalidmatchpassword,
+                         "Incorrect password given.")
 
     def test_login_inputnull(self):
         """ Test login when all inputs are null"""
