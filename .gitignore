@@ -13,3 +13,4 @@ config.pyc
 __pycache__/
 app/__pycache__/
 .cache/
+app/static/images
