@@ -2,30 +2,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Landing Page</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Yummy Recipes</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/register"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
-				<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			</ul>
-		</div>
-	</nav>
-	
-	<div class="col-sm-offset-3">
-	<div class="col-3">
-		
-<span style="font-size: 40em;" class="glyphicon glyphicon-cutlery"></span>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Yummy Recipes</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/register"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <center><h1><u>Yummy Recipes</u></h1></center>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_basic_broth.jpg">
+        <img src="../static/images/yummy_basic_broth.jpg">
+      </a>
+      <div class="desc">Basic Broth</div>
+    </div>
+  </div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_hot_chili_con.jpg">
+        <img src="../static/images/yummy_hot_chili_con.jpg">
+      </a>
+      <div class="desc">Hot chili con</div>
+    </div>
+  </div>
 
-	</div>
-		
-	</div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_vegetable.jpg">
+        <img src="../static/images/yummy_vegetable.jpg">
+      </a>
+      <div class="desc">Carrot And Moong Dal Soup</div>
+    </div>
+  </div>
+
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_pav_bhaji_mumbai.jpg">
+        <img src="../static/images/yummy_pav_bhaji_mumbai.jpg">
+      </a>
+      <div class="desc">Pav Bhaji of Mumbai</div>
+    </div>
+  </div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_tomato-vegetables-juice.jpg">
+        <img src="../static/images/yummy_tomato-vegetables-juice.jpg">
+      </a>
+      <div class="desc">Tomato Gazpacho</div>
+    </div>
+  </div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_sambar.jpg">
+        <img src="../static/images/yummy_sambar.jpg">
+      </a>
+      <div class="desc">This South-Indian delicacy, packs the goodness of lentils and vegetables.</div>
+    </div>
+  </div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_delicious.jpg">
+        <img src="../static/images/yummy_delicious.jpg">
+      </a>
+      <div class="desc">Tamatar Shorba</div>
+    </div>
+  </div>
+  <div class="responsive">
+    <div class="recipes_image">
+      <a target="_blank" href="../static/images/yummy_dark_meat.jpg">
+        <img src="../static/images/yummy_dark_meat.jpg">
+      </a>
+      <div class="desc">KUMURAT DIYA HANHOR MANGXO -This sumptuous delicacy from Assam is a duck meat curry cooked</div>
+    </div>
+  </div>
 </body>
 </html>
