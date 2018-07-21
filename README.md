@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/kaguna/CP2-yummy-recipes.svg?branch=master)](https://travis-ci.org/kaguna/CP2-yummy-recipes)
-[![Coverage Status](https://coveralls.io/repos/github/kaguna/CP2-yummy-recipes/badge.svg?branch=master)](https://coveralls.io/github/kaguna/Yummy-Recipes?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/kaguna/CP2-yummy-recipes/badge.svg?branch=master)](https://coveralls.io/github/kaguna/CP2-yummy-recipes?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/80bf253aa68f42b994e737ef2607d944)](https://www.codacy.com/app/kaguna/CP2-yummy-recipes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kaguna/CP2-yummy-recipes&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kaguna/CP2-yummy-recipes/blob/master/license.txt)
 
 # Yummy-Recipes
